@@ -19,7 +19,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExpanseService {
   // 讀取 txt 位置
-  private static final String INPUT_PATH = "./src/main/resources/input.txt";
+  private static final String INPUT_PATH = "C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\input.txt";
+  private static final String OUTPUT_PATH = "C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\output.txt";
+  private static final String EXCEL_OUTPUT_PATH = "C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\output.xlsx";
 
   public static void reformatAndExportToExcel() {
 
@@ -46,33 +48,37 @@ public class ExpanseService {
             || line.contains("* Jacky")) {
         } else {
           String[] parts = line.split("\\s+");
-          switch (role) {
-            case 0:
-              family.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
-                  parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
-              break;
-            case 1:
-              emily.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
-                  parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
-              break;
-            case 2:
-              jacky.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
-                  parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
-              break;
-            default:
-              break;
+          try {
+            switch (role) {
+              case 0:
+                family.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
+                    parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
+                break;
+              case 1:
+                emily.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
+                    parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
+                break;
+              case 2:
+                jacky.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
+                    parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
+                break;
+              default:
+                break;
+            }
+          } catch (Exception e) {
+            System.err.println("!!!!Line!!!!!: " + line);
           }
         }
 
-        if (StringUtils.contains(line, "* 家庭公帳")) {
+        if (StringUtils.contains(line, "家庭公帳")) {
           role = 0;
         }
 
-        if (StringUtils.contains(line, "* Emily")) {
+        if (StringUtils.contains(line, "Emily")) {
           role = 1;
         }
 
-        if (StringUtils.contains(line, "* Jacky")) {
+        if (StringUtils.contains(line, "Jacky")) {
           role = 2;
         }
 
@@ -85,7 +91,7 @@ public class ExpanseService {
 
     // 寫出 txt
     try (BufferedWriter writer = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream("./src/main/resources/output.txt"), "UTF-8"))) {
+        new OutputStreamWriter(new FileOutputStream(OUTPUT_PATH), "UTF-8"))) {
       writer.write("家庭公帳");
       writer.newLine();
 
@@ -162,7 +168,7 @@ public class ExpanseService {
       }
     }
 
-    try (FileOutputStream fileOut = new FileOutputStream("./src/main/resources/output.xlsx")) {
+    try (FileOutputStream fileOut = new FileOutputStream(EXCEL_OUTPUT_PATH)) {
       workbook.write(fileOut);
     } catch (IOException e) {
       System.err.println("IOException: " + e.getMessage());
