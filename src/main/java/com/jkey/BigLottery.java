@@ -27,7 +27,7 @@ public class BigLottery {
 
 
   public static void genLotteryNumbersSets() {
-    System.out.println("大樂透獎號產生: ");
+    System.out.println("大樂透獎號產生: ================================================================================");
     // 變數初始化設置
     List<List<Integer>> historyNumbersList = new ArrayList<>();
 
@@ -137,7 +137,7 @@ public class BigLottery {
     }
     lotteryNumbersDistinct.sort(Integer::compareTo);
     System.out.println("隨機選出樂透號碼數字" + lotteryNumbersDistinct);
-    System.out.println("");
+    System.out.println("=============================================================================================");
 
 
 // 把結果寫到檔案
