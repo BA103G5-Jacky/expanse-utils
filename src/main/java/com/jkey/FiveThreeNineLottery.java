@@ -17,16 +17,17 @@ import java.util.List;
 public class FiveThreeNineLottery {
   // 讀取 txt 位置
   // [!!注意!!] 記得更新歷史訊息
-  private static final String NUMBERS_PATH = "C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\539_history_numbers.txt"; // 539 歷史開獎號碼
+  private static final String NUMBERS_PATH = "src/main/resources/539_history_numbers.txt"; // 539 歷史開獎號碼
+  private static final String NUMBERS_OUTPUT_PATH = "src/main/resources/539_lottery_numbers_result.txt"; // 539 歷史開獎號碼
   private static int SET_SIZE = 5; // 一組號碼有幾個
   private static final int REF_ISSUE_NUM = 10; // 要參考之前幾組開獎號碼
   private static final int FIVETHREENINE_NUM = 39; // 有幾顆彩球
   private static int LOTTERY_SET_NUM = 4; // 想要產生出的組數
-  private static int NONE_HIT_NUM = 0; // 未開出的選擇數量
+  private static int NONE_HIT_NUM = 2; // 未開出的選擇數量
 
 
   public static void genLotteryNumbersSets() {
-
+    System.out.println("今彩539獎號產生: ");
     // 變數初始化設置
     List<List<Integer>> historyNumbersList = new ArrayList<>();
 
@@ -136,12 +137,13 @@ public class FiveThreeNineLottery {
     }
     lotteryNumbersDistinct.sort(Integer::compareTo);
     System.out.println("隨機選出樂透號碼數字" + lotteryNumbersDistinct);
+    System.out.println("");
 
 
 // 把結果寫到檔案
       try (BufferedWriter writer = new BufferedWriter(
           new OutputStreamWriter(new FileOutputStream(
-              "C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\539_lottery_numbers_result.txt"),
+              NUMBERS_OUTPUT_PATH),
               StandardCharsets.UTF_8))) {
         for (int i = 0; i < LOTTERY_SET_NUM; i++) {
           writer.write((i + 1) + ": " + lotteryNumbersSets.get(i));

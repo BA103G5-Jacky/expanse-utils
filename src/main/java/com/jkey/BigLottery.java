@@ -17,14 +17,17 @@ import java.util.List;
 public class BigLottery {
   // 讀取 txt 位置
   // [!!注意!!] 記得更新歷史訊息
-  private static final String NUMBERS_PATH = "C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\big_history_numbers.txt"; // 539 歷史開獎號碼
+  private static final String NUMBERS_PATH = "src/main/resources/big_history_numbers.txt"; // 539 歷史開獎號碼
+  private static final String NUMBERS_OUTPUT_PATH = "src/main/resources/big_lottery_numbers_result.txt"; // 539 歷史開獎號碼
   private static int SET_SIZE = 6; // 一組號碼有幾個
   private static final int REF_ISSUE_NUM = 10; // 要參考之前幾組開獎號碼
   private static final int FIVETHREENINE_NUM = 49; // 有幾顆彩球
   private static int LOTTERY_SET_NUM = 4; // 想要產生出的組數
+  private static int NONE_HIT_NUM = 2; // 未開出的選擇數量
+
 
   public static void genLotteryNumbersSets() {
-
+    System.out.println("大樂透獎號產生: ");
     // 變數初始化設置
     List<List<Integer>> historyNumbersList = new ArrayList<>();
 
@@ -72,7 +75,7 @@ public class BigLottery {
     // 排序已開過獎的號碼
     distinctNumbers.sort(Integer::compareTo);
 
-    // 取得 1 ~ 49 的數字，但不包含前十組開獎的數字
+    // 取得 1 ~ 39 的數字，但不包含前十組開獎的數字
     List<Integer> nonHitNumbers = new ArrayList<>();
     for (int i = 1; i <= FIVETHREENINE_NUM; i++) {
       if (!distinctNumbers.contains(i)) {
@@ -86,7 +89,9 @@ public class BigLottery {
     System.out.println("前 " + REF_ISSUE_NUM + " 期有開出的獎號: " + distinctNumbers);
     System.out.println("前 " + REF_ISSUE_NUM + " 期有開出獎號的數量: " + distinctNumbers.size());
     System.out.println("");
-    System.out.println("隨機產出 " + LOTTERY_SET_NUM + " 組號碼(未開出的隨機挑兩個，已開出的隨機挑三個)");
+    System.out.println(
+        "隨機產出 " + LOTTERY_SET_NUM + " 組號碼(未開出的隨機挑 " + NONE_HIT_NUM + " 個，已開出的隨機挑 "
+            + (SET_SIZE - NONE_HIT_NUM) + " 個)");
 
     List<List<Integer>> lotteryNumbersSets = new ArrayList<>();
 
@@ -94,7 +99,7 @@ public class BigLottery {
       // 再 distinctNumbers 隨機取兩個數字，nonHitNumbers 隨機取三個數字
       List<Integer> lotteryNumbers = new ArrayList<>();
       for (int j = 0; j < SET_SIZE; j++) {
-        if (j < 2) {
+        if (j < NONE_HIT_NUM) {
           int randomIndex = (int) (Math.random() * nonHitNumbers.size());
           if (lotteryNumbers.contains(nonHitNumbers.get(randomIndex))) {
             j--;
@@ -112,16 +117,36 @@ public class BigLottery {
       }
       lotteryNumbers.sort(Integer::compareTo);
 
-      System.out.println((i+1) + ": " + lotteryNumbers);
+      System.out.println((i + 1) + ": " + lotteryNumbers);
 
       lotteryNumbersSets.add(lotteryNumbers);
     }
 
+    List<Integer> lotteryNumbersDistinct = new ArrayList<>();
+
+    for (List<Integer> lotteryNumberSet : lotteryNumbersSets) {
+//      System.out.println(lotteryNumberSet);
+      {
+        // loop lotteryNumberSet
+        for (Integer lotteryNumber : lotteryNumberSet) {
+          if (!lotteryNumbersDistinct.contains(lotteryNumber)) {
+            lotteryNumbersDistinct.add(lotteryNumber);
+          }
+        }
+      }
+    }
+    lotteryNumbersDistinct.sort(Integer::compareTo);
+    System.out.println("隨機選出樂透號碼數字" + lotteryNumbersDistinct);
+    System.out.println("");
+
+
 // 把結果寫到檔案
     try (BufferedWriter writer = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream("C:\\Users\\jacky.chiu\\Documents\\proj\\expanse-utils\\src\\main\\resources\\big_lottery_numbers_result.txt"), StandardCharsets.UTF_8))) {
+        new OutputStreamWriter(new FileOutputStream(
+            NUMBERS_OUTPUT_PATH),
+            StandardCharsets.UTF_8))) {
       for (int i = 0; i < LOTTERY_SET_NUM; i++) {
-        writer.write((i+1) + ": " + lotteryNumbersSets.get(i));
+        writer.write((i + 1) + ": " + lotteryNumbersSets.get(i));
         writer.newLine();
       }
     } catch (FileNotFoundException e) {
@@ -129,6 +154,7 @@ public class BigLottery {
     } catch (IOException e) {
       System.err.println("IOException: " + e.getMessage());
     }
+
 
   }
 
