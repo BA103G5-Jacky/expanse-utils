@@ -1,8 +1,9 @@
 ### Files ###
 src/main/resources/539_lottery_numbers_result.txt
-src/main/resource/big_lottery_numbers_result.txt
+src/main/resources/big_lottery_numbers_result.txt
 src/main/resources/output.txt
-src/main/resouce/output.xlsx
+src/main/resources/output.xlsx
+src/main/resources/~$output.xlsx
 
 .gradle
 build/
