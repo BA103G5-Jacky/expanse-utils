@@ -21,10 +21,10 @@ public class BigLottery {
   private static final String NUMBERS_OUTPUT_PATH = "src/main/resources/big_lottery_numbers_result.txt"; // 539 歷史開獎號碼
   private static int SET_SIZE = 6; // 一組號碼有幾個
   private static final int REF_ISSUE_NUM = 10; // 要參考之前幾組開獎號碼
-  private static final int FIVETHREENINE_NUM = 49; // 有幾顆彩球
+  private static final int BIG_LOTTERY_NUM = 49; // 有幾顆彩球
   private static int LOTTERY_SET_NUM = 4; // 想要產生出的組數
   private static int NONE_HIT_NUM = 2; // 未開出的選擇數量
-  private static int HISTORY_NUM_FOR_STAT = 100; // 要參考之前幾組開獎號碼的開出次數與機率組數
+  private static int HISTORY_NUM_FOR_STAT = 20; // 要參考之前幾組開獎號碼的開出次數與機率組數
 
 
   public static void genLotteryNumbersSets() {
@@ -76,9 +76,9 @@ public class BigLottery {
     // 排序已開過獎的號碼
     distinctNumbers.sort(Integer::compareTo);
 
-    // 取得 1 ~ 39 的數字，但不包含前十組開獎的數字
+    // 取得 1~49 的數字，但不包含前十組開獎的數字
     List<Integer> nonHitNumbers = new ArrayList<>();
-    for (int i = 1; i <= FIVETHREENINE_NUM; i++) {
+    for (int i = 1; i <= BIG_LOTTERY_NUM; i++) {
       if (!distinctNumbers.contains(i)) {
         nonHitNumbers.add(i);
       }
@@ -141,7 +141,7 @@ public class BigLottery {
     System.out.println("=============================================================================================");
 
 
-// 把結果寫到檔案
+    // 把結果寫到檔案
     try (BufferedWriter writer = new BufferedWriter(
         new OutputStreamWriter(new FileOutputStream(
             NUMBERS_OUTPUT_PATH),
@@ -157,7 +157,7 @@ public class BigLottery {
     }
 
     // 計算歷史開獎號碼出現次數
-    Utils.countLotteryNumberOccurrences(historyNumbersList, HISTORY_NUM_FOR_STAT);
+    Utils.countLotteryNumberOccurrences(historyNumbersList, HISTORY_NUM_FOR_STAT, BIG_LOTTERY_NUM);
 
 
   }

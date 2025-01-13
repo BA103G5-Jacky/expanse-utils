@@ -24,7 +24,7 @@ public class FiveThreeNineLottery {
   private static final int FIVETHREENINE_NUM = 39; // 有幾顆彩球
   private static int LOTTERY_SET_NUM = 4; // 想要產生出的組數
   private static int NONE_HIT_NUM = 2; // 未開出的選擇數量
-  private static int HISTORY_NUM_FOR_STAT = 100; // 要參考之前幾組開獎號碼的開出次數與機率組數
+  private static int HISTORY_NUM_FOR_STAT = 20; // 要參考之前幾組開獎號碼的開出次數與機率組數
 
 
   public static void genLotteryNumbersSets() {
@@ -157,7 +157,7 @@ public class FiveThreeNineLottery {
       }
 
       // 計算歷史開獎號碼出現次數
-      Utils.countLotteryNumberOccurrences(historyNumbersList, HISTORY_NUM_FOR_STAT);
+      Utils.countLotteryNumberOccurrences(historyNumbersList, HISTORY_NUM_FOR_STAT, FIVETHREENINE_NUM);
 
 
   }
