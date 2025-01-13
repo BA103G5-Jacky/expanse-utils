@@ -1,3 +1,9 @@
+### Files ###
+src/main/resources/539_lottery_numbers_result.txt
+src/main/resource/big_lottery_numbers_result.txt
+src/main/resources/output.txt
+src/main/resouce/output.xlsx
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
