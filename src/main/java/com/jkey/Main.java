@@ -6,8 +6,8 @@ import com.jkey.lottery.FiveThreeNineLottery;
 public class Main {
 
   public static void main(String[] args) {
-//    ExpanseService.reformatAndExportToExcel();
+    ExpanseService.reformatAndExportToExcel();
 //    FiveThreeNineLottery.genLotteryNumbersSets();
-    BigLottery.genLotteryNumbersSets();
+//    BigLottery.genLotteryNumbersSets();
   }
 }

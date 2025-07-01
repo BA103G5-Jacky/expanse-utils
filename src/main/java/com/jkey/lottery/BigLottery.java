@@ -19,11 +19,11 @@ public class BigLottery {
   // [!!注意!!] 記得更新歷史訊息
   private static final String NUMBERS_PATH = "src/main/resources/big_history_numbers.txt"; // 539 歷史開獎號碼
   private static final String NUMBERS_OUTPUT_PATH = "src/main/resources/big_lottery_numbers_result.txt"; // 539 歷史開獎號碼
-  private static int SET_SIZE = 6; // 一組號碼有幾個
-  private static final int REF_ISSUE_NUM = 10; // 要參考之前幾組開獎號碼
+  private static int SET_SIZE = 7; // 一組號碼有幾個
+  private static final int REF_ISSUE_NUM = 20; // 要參考之前幾組開獎號碼
   private static final int BIG_LOTTERY_NUM = 49; // 有幾顆彩球
-  private static int LOTTERY_SET_NUM = 4; // 想要產生出的組數
-  private static int NONE_HIT_NUM = 2; // 未開出的選擇數量
+  private static int LOTTERY_SET_NUM = 1; // 想要產生出的組數
+  private static int NONE_HIT_NUM = 0; // 未開出的選擇數量
   private static int HISTORY_NUM_FOR_STAT = 20; // 要參考之前幾組開獎號碼的開出次數與機率組數
 
 
@@ -31,6 +31,7 @@ public class BigLottery {
     System.out.println("大樂透獎號產生: ================================================================================");
     // 變數初始化設置
     List<List<Integer>> historyNumbersList = new ArrayList<>();
+
 
     // [START] 讀取資料 -----------------------------------------------------------------------------
     try (BufferedReader reader = new BufferedReader(
@@ -63,8 +64,9 @@ public class BigLottery {
     // [START] 產生號碼組合 -----------------------------------------------------------------------------
 
     // 拿前 ? 筆資料，distinct 有哪一些號碼
+    int historyTotalNum = (Math.min(historyNumbersList.size(), REF_ISSUE_NUM));
     List<Integer> distinctNumbers = new ArrayList<>();
-    for (int i = 0; i < REF_ISSUE_NUM; i++) {
+    for (int i = 0; i < historyTotalNum; i++) {
       List<Integer> numbers = historyNumbersList.get(i);
       for (Integer number : numbers) {
         if (!distinctNumbers.contains(number)) {
@@ -85,10 +87,10 @@ public class BigLottery {
     }
 
     System.out.println();
-    System.out.println("前 " + REF_ISSUE_NUM + " 期未開出的獎號: " + nonHitNumbers);
-    System.out.println("前 " + REF_ISSUE_NUM + " 期有開出獎號的數量: " + nonHitNumbers.size());
-    System.out.println("前 " + REF_ISSUE_NUM + " 期有開出的獎號: " + distinctNumbers);
-    System.out.println("前 " + REF_ISSUE_NUM + " 期有開出獎號的數量: " + distinctNumbers.size());
+    System.out.println("前 " + historyTotalNum + " 期未開出的獎號: " + nonHitNumbers);
+    System.out.println("前 " + historyTotalNum + " 期未開出獎號的數量: " + nonHitNumbers.size());
+    System.out.println("前 " + historyTotalNum + " 期有開出的獎號: " + distinctNumbers);
+    System.out.println("前 " + historyTotalNum + " 期有開出獎號的數量: " + distinctNumbers.size());
     System.out.println("");
     System.out.println(
         "隨機產出 " + LOTTERY_SET_NUM + " 組號碼(未開出的隨機挑 " + NONE_HIT_NUM + " 個，已開出的隨機挑 "

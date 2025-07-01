@@ -41,26 +41,26 @@ public class ExpanseService {
 
       while ((line = reader.readLine()) != null) {
 
-        if (line.matches("\\*\\s\\d{1,2}/\\d{1,2}/\\d{4}\\s+\\d+")) {
+        if (line.matches("\\d{1,2}/\\d{1,2}/\\d{4}\\s+\\d+")) {
           dateTemp = line.trim().substring(1).trim();
           listStr.add(dateTemp); // <---------------------------------------------------
-        } else if (line.contains("* 無") || line.contains("* 家庭公帳") || line.contains("* Emily")
-            || line.contains("* Jacky")) {
+        } else if (line.contains("無") || line.contains("[家庭公帳]") || line.contains("[Emily]")
+            || line.contains("[Jacky]")) {
         } else {
           String[] parts = line.split("\\s+");
           try {
             switch (role) {
               case 0:
-                family.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
-                    parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
+                family.add(new ExpanseDetailVO(dateTemp, parts[0], parts[1],
+                    parts.length > 2 ? StringUtils.capitalize(parts[2]) : null));
                 break;
               case 1:
-                emily.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
-                    parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
+                emily.add(new ExpanseDetailVO(dateTemp, parts[0], parts[1],
+                    parts.length > 2 ? StringUtils.capitalize(parts[2]) : null));
                 break;
               case 2:
-                jacky.add(new ExpanseDetailVO(dateTemp, parts[2], parts[3],
-                    parts.length > 4 ? StringUtils.capitalize(parts[4]) : null));
+                jacky.add(new ExpanseDetailVO(dateTemp, parts[0], parts[1],
+                    parts.length > 2 ? StringUtils.capitalize(parts[2]) : null));
                 break;
               default:
                 break;
@@ -70,15 +70,15 @@ public class ExpanseService {
           }
         }
 
-        if (StringUtils.contains(line, "家庭公帳")) {
+        if (StringUtils.contains(line, "[家庭公帳]")) {
           role = 0;
         }
 
-        if (StringUtils.contains(line, "Emily")) {
+        if (StringUtils.contains(line, "[Emily]")) {
           role = 1;
         }
 
-        if (StringUtils.contains(line, "Jacky")) {
+        if (StringUtils.contains(line, "[Jacky]")) {
           role = 2;
         }
 
