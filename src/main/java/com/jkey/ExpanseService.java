@@ -42,7 +42,7 @@ public class ExpanseService {
       while ((line = reader.readLine()) != null) {
 
         if (line.matches("\\d{1,2}/\\d{1,2}/\\d{4}\\s+\\d+")) {
-          dateTemp = line.trim().substring(1).trim();
+          dateTemp = line.trim();
           listStr.add(dateTemp); // <---------------------------------------------------
         } else if (line.contains("無") || line.contains("[家庭公帳]") || line.contains("[Emily]")
             || line.contains("[Jacky]")) {
