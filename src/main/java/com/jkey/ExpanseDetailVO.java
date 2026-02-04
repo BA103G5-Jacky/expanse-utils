@@ -48,7 +48,7 @@ public class ExpanseDetailVO {
     else if(item.contains("衣") || item.contains("鞋")){
       return "服裝";
     }
-    else if(item.contains("票") || item.contains("電影") || item.contains("演唱會") || item.contains("娛樂") || item.contains("spotify") || item.contains("netflix")){
+    else if(item.contains("票") || item.contains("電影") || item.contains("演唱會") || item.contains("娛樂") || item.contains("spotify") || item.contains("netflix") || item.contains("彩券")){
       return "娛樂";
     }
     else if(item.contains("所得稅")){
