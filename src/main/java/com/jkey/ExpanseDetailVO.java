@@ -66,7 +66,7 @@ public class ExpanseDetailVO {
 //    else if(item.contains("")){
 //      return "理財投資";
 //    }
-    else if(item.contains("掛號")|| item.contains("眼科") || item.contains("看診")){
+    else if(item.contains("掛號")|| item.contains("眼科") || item.contains("看診") || item.contains("醫生")){
       return "醫療保健運動";
     }
 //    else if(item.contains("")){

@@ -7,6 +7,7 @@ public class Main {
 
   public static void main(String[] args) {
     ExpanseService.reformatAndExportToExcel();
+    ExpanseService.reformatAndExportToCSV();
 //    FiveThreeNineLottery.genLotteryNumbersSets();
 //    BigLottery.genLotteryNumbersSets();
   }
