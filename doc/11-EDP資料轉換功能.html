@@ -1,0 +1,711 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'><style type='text/css'>html {overflow-x: initial !important;}</style>
+<style type='text/css'  id="style-base">:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI Emoji", "SF Pro", sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p *, #write.first-line-indent svg * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
+.nodeLabel p { padding-right: 2px; padding-left: 2px; }
+.typora-export .nodeLabel p { padding-right: 0px; padding-left: 0px; }
+foreignobject { overflow: visible; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+li p { orphans: 1; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+</style>
+<style type='text/css'  id="style-codemirror">.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+</style>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&amp;subset=latin,latin-ext' type='text/css' />
+<style type='text/css'  id="style-theme_css">:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', 'SF Pro', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+</style>
+<style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
+
+<title>11-EDP資料轉換功能</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='edp-資料轉換功能edp-custom'><span>EDP 資料轉換功能（edp-custom）</span></h1><blockquote><p><strong><span>所屬模組</span></strong><span>：edp-custom（adapter-rest / application）</span>
+<strong><span>最後更新</span></strong><span>：2026-03-04</span></p></blockquote><hr /><h2 id='1-功能簡述'><span>1. 功能簡述</span></h2><p><code>edp-custom</code><span> 是獨立的資料轉換微服務，負責將 </span><strong><span>EDP (ESG Data Platform)</span></strong><span> 的問卷填答原始資料（Raw Data）轉換為 GHG 系統所需的格式，並透過 GHG API 匯入 (GHG OpenAPI)。</span></p><p><span>整體流程由 </span><strong><span>Spring Batch Job</span></strong><span> 驅動，搭配 </span><strong><span>Airbyte</span></strong><span> 作為 EDP → DB 的資料同步工具：</span></p><ul><li><p><span>Airbyte 負責將 EDP 資料 (IT SQL Server) 同步至 Raw Data DB (DSPBD PostgreSQL)</span></p></li><li><p><span>Spring Batch Job 讀取 Raw Data，進行題目分群、排放源轉換，寫入暫存表</span></p></li><li><p><span>比對暫存表與主表差異（CREATE / UPDATE / DELETE），再呼叫 GHG API 匯入</span></p></li><li><p><span>目前同步資料如果沒有指定的話，都是撈取系統年份近兩年的資料 (例如 2026年 會撈取 2025、2026 年資料進行同步)</span></p></li></ul><p><span>觸發方式：</span></p><ul><li><p><strong><span>排程觸發</span></strong><span>：CronJob 定期觸發 </span><code>GET /api/v2/batch/edp-to-ghg-job</code><span>，目前只有專案版正式環境每天7:30執行一次</span></p></li><li><p><strong><span>API 觸發</span></strong><span>：系統呼叫 </span><code>POST /api/v2/batch/sync-edp-by-site</code><span> 觸發指定據點同步，由使用者手動觸發</span></p></li></ul><hr /><h2 id='2-架構設計'><span>2. 架構設計</span></h2><h3 id='相關文獻'><span>相關文獻</span></h3><ul><li><p><a href='https://deltao365.sharepoint.com/:x:/r/sites/GHG_RD/_layouts/15/Doc.aspx?sourcedoc=%7B8AAE238A-4E4A-4042-84DF-0EFC418223CC%7D&amp;file=GHG%E7%B3%BB%E7%B5%B1%E5%88%86%E6%9E%90%E6%96%87%E4%BB%B6_EDP.xlsx&amp;action=default&amp;mobileredirect=true&amp;DefaultItemOpen=1'><span>EDP 系統分析文件</span></a></p></li></ul><h3 id='架構圖'><span>架構圖</span></h3><ul><li><p><span>EDP 資料 Raw Data Table (202501初版)</span>
+<img src="../../ref/EDP_RawDataTranserFlow-202501.png" alt="EDP_RawDataTranserFlow-202501"></p></li><li><p><span>EDP 資料轉換流程圖 (202509 詳細版)</span>
+<img src="../../ref/EDP資料轉置EDPtoGHG流程圖-202509.png" alt="EDP資料轉置EDPtoGHG流程圖-202509"></p></li><li><p><span>EDP 資料轉換流程圖 (202511 簡化版)</span>
+<img src="../../ref/EDP資料轉置EDPtoGHG流程圖-202511-simple.png" alt="EDP資料轉置EDPtoGHG流程圖-202511-simple"></p></li><li><p><span>EDP 資料 DB 環境架構</span>
+<img src="../../ref/EDP資料轉置環境架構-202601.png" alt="EDP資料轉置環境架構-202601"></p></li></ul><hr /><h3 id='分層架構adapter-rest-→-application-→-infrastructure'><span>分層架構（adapter-rest → application → infrastructure）</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">adapter-rest</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── AirbyteController &nbsp; &nbsp; (webhook 接收 Airbyte 通知)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── BatchController &nbsp; &nbsp; &nbsp; (Batch Job 觸發 / 狀態查詢)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── OpenFeignController &nbsp; (連線驗證)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">application</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── batch</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── BatchConfig &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Spring Batch Job / Step 定義)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── BatchTaskService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (Batch Job 管理、狀態查詢)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── AsyncBatchService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (非同步 Job 執行)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └── tasklet</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp; ├── AirbyteSyncBarrierTasklet &nbsp; &nbsp; &nbsp; (Airbyte 同步觸發與等待)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp; ├── CompareSaveAndImportEdpDiffsTasklet  (差異比對、儲存、呼叫 GHG API)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp; ├── EdpCustomMainTempDeletingTasklet &nbsp; &nbsp; (清除暫存表)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp; └── EdpCustomErrorLogDeletingTasklet &nbsp; &nbsp; (清除 Error Log)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── airbyte</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └── SyncWindowService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Airbyte 同步視窗管理 Leader/Follower)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── edpcustom</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── RawDataTransferService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (Raw Data → EdpCustomMain 轉換)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── EdpDiffService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (暫存表 vs 主表 差異比對)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── EdpErrorLogService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (錯誤日誌儲存)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── transferscope</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; │ &nbsp; ├── TransferScopeFactory &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (依 Scope 類型取得對應 Service)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; │ &nbsp; ├── ITransferScopeService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Scope 轉換介面)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; │ &nbsp; └── TransferScope*Service &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (各 Scope 實作：1, 1.4冷媒, 2.1, 2.2, 4.1, 4.1水, 4.3)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └── ghgimport</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp; └── GhgImportService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (組裝 GhgImportDto，呼叫 GHG API)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── notification</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  └── EmailService &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (異常通知 Email)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">infrastructure</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── edpcustom</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── EdpCustomMain &nbsp; &nbsp; (EDP Custom DB 主表，儲存最新的完整轉換結果)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── EdpCustomMainTemp (EDP Custom DB 暫存表，儲存本次轉換結果，用於與主表比對差異)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├── EdpCustomDataMap  (EDP Custom DB 下拉選單對應表，儲存 EDP 原始資料下拉選單 Key 對應 GHG 的資料)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └── EdpCustomErrorLog (EDP Custom DB 錯誤日誌表，儲存轉換過程中產生的資料異常，例如非法 SiteId、排放源轉換錯誤等)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── rawdata  (EDP Raw Data DB，唯讀)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── Report &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (EDP Raw Data DB Report 表，儲存分發的問卷)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── ReportForm &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (EDP Raw Data DB ReportForm 表，儲存問卷的題目與填答資料)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── Org &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (EDP Raw Data DB Org 表，儲存組織資料)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── ReportFormMultipleTopic (EDP Raw Data DB ReportFormMultipleTopic 表，問券中的分群資料 parentFormId 對應 childFormId 的關係)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── TopicDropdown &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (EDP Raw Data DB TopicDropdown 表，儲存題目中下拉選單的選項資料)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── Unit &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  (EDP Raw Data DB Unit 表，儲存單位資料)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  └── ...</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 1037px;"></div><div class="CodeMirror-gutters" style="display: none; height: 1037px;"></div></div></div></pre><h3 id='雙資料庫設計'><span>雙資料庫設計</span></h3><figure class='table-figure'><table><thead><tr><th><span>DB</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>Raw Data DB</span></td><td><span>Airbyte 同步過來的 EDP 問卷原始資料（唯讀）</span></td></tr><tr><td><span>EDP Custom DB</span></td><td><span>edp-custom 處理後的暫存表、主表、Error Log</span></td></tr></tbody></table></figure><hr /><h2 id='3-api-清單'><span>3. API 清單</span></h2><h3 id='webhook接收-airbyte-通知'><span>Webhook（接收 Airbyte 通知）</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>POST</span></td><td><code>/api/v2/webhook/airbyte</code></td><td><span>接收 Airbyte 資料同步完成通知，更新同步視窗狀態</span></td></tr></tbody></table></figure><h3 id='batch-job-管理'><span>Batch Job 管理</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/batch/edp-to-ghg-job</code></td><td><span>CronJob 排程觸發，執行 EDP→GHG 資料轉換 Job (每天 7:30)</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/batch/cleanup-stuck-jobs</code></td><td><span>CronJob 排程觸發 清除卡住（START 狀態逾時）的 Batch Job (每1小時)</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/batch/sync-edp-by-site</code></td><td><span>系統 API 觸發，指定據點執行資料同步</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/batch/sync-task-status</code></td><td><span>查詢多個據點的同步任務狀態</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/batch/system-sync-status</code></td><td><span>查詢系統整體同步任務狀態（供 GHG 系統判斷是否可產出報告書）</span></td></tr></tbody></table></figure><h3 id='連線驗證open-feign'><span>連線驗證（Open Feign）</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/open-feign/airbyte/connection-status</code></td><td><span>驗證 Airbyte 連線狀態</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/open-feign/users</code></td><td><span>驗證 GHG User 連線，取得所有 GHG 管理員</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/open-feign/sites/validate</code></td><td><span>驗證 Site ID 是否合法（呼叫 GHG API）</span></td></tr></tbody></table></figure><hr /><h2 id='4-業務邏輯'><span>4. 業務邏輯</span></h2><h3 id='spring-batch-job-結構readreportandgroupquestionsjob'><span>Spring Batch Job 結構（</span><code>readReportAndGroupQuestionsJob</code><span>）</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">readReportAndGroupQuestionsJob</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── Step 1: airbyteSyncBarrierStep &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; → 觸發 Airbyte 同步，等待完成</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── Step 2: deleteEdpCustomMainTempStep &nbsp; &nbsp;  → 清除 edp_custom_main_temp 資料表</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── Step 3: deleteEdpCustomErrorLog &nbsp; &nbsp; &nbsp; &nbsp;  → 清除 edp_custom_error_log 資料表</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── Step 4: readReportStep &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; → 讀取 Raw Data，轉換寫入 Temp 表</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; (Reader → Processor → Writer)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; Listener: ReadReportStepListener &nbsp; &nbsp; &nbsp; → Step 結束後驗證 SiteId 合法性、發通知 Email</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── Step 5: compareAndSaveEdpCustomMainDiffsStep → 差異比對 + 儲存 + 呼叫 GHG API 匯入</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  Listener: ReadReportAndGroupQuestionsListener  → Job 成功/失敗時通知</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 207px;"></div><div class="CodeMirror-gutters" style="display: none; height: 207px;"></div></div></div></pre><hr /><h3 id='step-1airbytesyncbarriertaskletairbyte-同步等待屏障'><span>Step 1：AirbyteSyncBarrierTasklet（Airbyte 同步等待屏障）</span></h3><p><span>透過 </span><strong><span>Leader/Follower 模式</span></strong><span> 避免多個 Job 同時觸發重複同步：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">執行 AirbyteSyncBarrierStep</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 查詢 AirbyteSyncWindow 狀態</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 若非 RUNNING 且在 Cooldown 時間內已成功同步 → 跳過此 Step</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 嘗試 tryStart：</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── 成功（Leader）：</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  │ &nbsp; &nbsp; → 呼叫 Airbyte API triggerSync</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  │ &nbsp; &nbsp; → 等待 Webhook 回呼（或主動輪詢 Job 狀態）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  │ &nbsp; &nbsp; → 逾時則查詢最終狀態</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  └── 失敗（Follower）：</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  → 等待 RUNNING 狀態結束（Leader 完成）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  → 放行，繼續後續 Step (避免重複觸發同步)</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 253px;"></div><div class="CodeMirror-gutters" style="display: none; height: 253px;"></div></div></div></pre><hr /><h3 id='step-4readreportstepraw-data-轉換寫入-temp'><span>Step 4：readReportStep（Raw Data 轉換寫入 Temp）</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">JpaPagingItemReader&lt;Report&gt;  (依條件分頁讀取 Raw Data DB 的 Report)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ↓</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">ItemProcessor&lt;Report, List&lt;EdpCustomMain&gt;&gt;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── 1. 建立 EdpTransferDto（轉換過程的資料傳遞物件）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── 2. RawDataTransferService.convertReportsToMap()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; → report_form 分群（依 is_added_by_client 分群，處理灰電/廢水特殊分群）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; → 設定 ReportFormMultipleTopic、ReportIfelse、Org 關聯資料</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── 3. 依分群類型判斷 TransferScopeType → 取得對應 TransferScopeService</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; → TransferScopeFactory.getTransferScopeService(type)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; → 各 Scope Service 實作 rawDataGroupToEdpMain()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  ├── TransferScope1Service &nbsp; &nbsp; (Scope 1 固定燃燒)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  ├── TransferScope14RefriService (Scope 1.4 冷媒逸散)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  ├── TransferScope21Service &nbsp;  (Scope 2.1 電力)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  ├── TransferScope22Service &nbsp;  (Scope 2.2 蒸汽)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  ├── TransferScope41Service &nbsp;  (Scope 4.1 商務旅行)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  ├── TransferScope41WaterService (Scope 4.1 水)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp;  └── TransferScope43Service &nbsp;  (Scope 4.3 廢棄物)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── 4. 回傳 List&lt;EdpCustomMain&gt;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ↓</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">ReportQuestionsWriter  (批次寫入 edp_custom_main_temp)</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 461px;"></div><div class="CodeMirror-gutters" style="display: none; height: 461px;"></div></div></div></pre><hr /><h3 id='step-5comparesaveandimportedpdiffstasklet差異比對--ghg-匯入'><span>Step 5：CompareSaveAndImportEdpDiffsTasklet（差異比對 + GHG 匯入）</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">執行 compareAndSaveEdpCustomMainDiffsStep</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → EdpDiffService.compareAndSave()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── 從 edp_custom_main_temp 撈出此次轉換結果</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── 呼叫 GHG API 驗證 SiteId 合法性，過濾非法 SiteId</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── 從 edp_custom_main 撈出上一次的轉換結果</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  └── diffMapHandler()：Hash 比對差異</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ├── 新增（Temp 有、Main 無）→ CREATE</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ├── 修改（Temp 有、Main 有、Hash 不同）→ UPDATE</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  └── 刪除（Temp 無、Main 有）→ DELETE</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  → 儲存差異結果至 edp_custom_main</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → GhgImportService.importGhgDataByDiffMap()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├── diffMap 轉換為 GhgImportDto（據點 → 排放源 → 活動數據 階層結構）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  └── 呼叫 IGhgClient.importData()（GHG API）</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 299px;"></div><div class="CodeMirror-gutters" style="display: none; height: 299px;"></div></div></div></pre><hr /><h3 id='ghgimportdto-資料格式'><span>GhgImportDto 資料格式</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">GhgImportDto</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── systemName: "EDP"</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── ghgImportData</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; ├── CREATE: [ SiteImportDto... ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; ├── UPDATE: [ SiteImportDto... ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; └── DELETE: [ SiteImportDto... ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">SiteImportDto</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── siteId, annual</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── emissionSourceList: [ EmissionSourceImportDto... ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; ├── importId, scope, name, frequency</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; ├── emissionSourceExtensionList</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; └── activityDataList: [ ActivityDataImportDto... ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ├── activityData, unit, startDate, endDate</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  └── activityDataExtensionList</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 346px;"></div><div class="CodeMirror-gutters" style="display: none; height: 346px;"></div></div></div></pre><hr /><h3 id='異常通知-email'><span>異常通知 Email</span></h3><p><span>通知對象：GHG 系統全部管理員（</span><code>EmailService</code><span> 呼叫 </span><code>getAllGhgAdmins()</code><span> 取得收件清單）</span></p><h4 id='syncsystemerroremail系統異常通知'><code>SyncSystemErrorEmail</code><span>（系統異常通知）</span></h4><figure class='table-figure'><table><thead><tr><th><span>情境</span></th><th><span>觸發點</span></th><th><span>錯誤訊息</span></th></tr></thead><tbody><tr><td><span>Job 執行過程中呼叫外部服務（Feign）拋出例外</span></td><td><code>ReadReportAndGroupQuestionsListener.afterJob()</code></td><td><span>&quot;EDP 資料同步發生異常&quot;</span></td></tr><tr><td><span>Job 執行過程中發生網路環境異常</span></td><td><code>ReadReportAndGroupQuestionsListener.afterJob()</code></td><td><span>&quot;網路環境發生異常&quot;</span></td></tr><tr><td><span>Job 執行過程中發生資料庫異常</span></td><td><code>ReadReportAndGroupQuestionsListener.afterJob()</code></td><td><span>&quot;資料庫發生異常&quot;</span></td></tr><tr><td><span>Job 執行過程中發生其他未預期之異常</span></td><td><code>ReadReportAndGroupQuestionsListener.afterJob()</code></td><td><span>&quot;其他未預期之異常&quot;</span></td></tr><tr><td><code>JobLauncher</code><span> 無法啟動 Job（非同步執行期間拋出例外）</span></td><td><code>AsyncBatchService.executeJobAsync()</code></td><td><span>&quot;排程作業發生異常&quot;</span></td></tr><tr><td><span>卡住的 Job 被清除（START 狀態逾時超過 timeout 閾值）</span></td><td><code>BatchTaskService.sendStuckJobNotificationEmail()</code></td><td><span>&quot;系統資源不足&quot;</span></td></tr><tr><td><span>JVM 全域 </span><code>OutOfMemoryError</code><span>（OOM）</span></td><td><code>UncaughtHandlerConfig</code><span>（全域未捕捉例外處理器）</span></td><td><span>&quot;系統資源不足&quot;</span></td></tr><tr><td><span>JVM 全域其他未捕捉執行緒例外</span></td><td><code>UncaughtHandlerConfig</code><span>（全域未捕捉例外處理器）</span></td><td><span>&quot;其他未預期之異常&quot;</span></td></tr></tbody></table></figure><blockquote><p><code>ReadReportAndGroupQuestionsListener.afterJob()</code><span> 會對每一個 Failure Exception 獨立判斷類型發出 Email。</span></p></blockquote><h4 id='syncdataerroremail資料異常通知'><code>SyncDataErrorEmail</code><span>（資料異常通知）</span></h4><figure class='table-figure'><table><thead><tr><th><span>情境</span></th><th><span>觸發點</span></th><th><span>對應錯誤欄位</span></th></tr></thead><tbody><tr><td><span>Temp 表內有 GHG 系統不存在的 SiteId（非法據點）</span></td><td><code>ReadReportStepListener.afterStep()</code></td><td><code>siteErrorMessage</code><span>（含 Org 組織名稱與 SiteId 列表）</span></td></tr><tr><td><span>Step 4 轉換過程產生 </span><code>TRANSFER_EDP_MAIN_ERROR</code><span> 類型 ErrorLog（排放源轉換異常）</span></td><td><code>ReadReportStepListener.afterStep()</code></td><td><code>emissionSourceErrorMessage</code><span>（含 ErrorLog 詳情）</span></td></tr></tbody></table></figure><blockquote><p><span>兩種資料異常可同時發生，此時同一封 Email 會同時包含 </span><code>siteErrorMessage</code><span> 與 </span><code>emissionSourceErrorMessage</code><span> 兩個錯誤欄位。</span></p></blockquote><hr /><h2 id='5-常見問題與排查'><span>5. 常見問題與排查</span></h2><figure class='table-figure'><table><thead><tr><th><span>問題</span></th><th><span>排查方向</span></th></tr></thead><tbody><tr><td><span>資料異常 (EDP GHG 資料對不上)</span></td><td><span>優先檢查大流程是否都有正常 work (Airbyte, 資料轉換 Job, GHG Import Log)，檢查資料 Raw Data &amp; EDP Custom 資轉資料 &amp; GHG 排放源活動數據</span></td></tr><tr><td><span>Job 卡在 START 狀態</span></td><td><span>呼叫 </span><code>GET /api/v2/batch/cleanup-stuck-jobs</code><span>，檢查是否超過 timeout 時間（預設 3 小時）</span></td></tr><tr><td><span>Airbyte 同步未觸發 / 逾時</span></td><td><span>檢查 </span><code>AirbyteSyncBarrierTasklet</code><span> Log，確認 Webhook 是否有回傳，或手動查詢 Airbyte Job 狀態</span></td></tr><tr><td><span>非法 SiteId 造成部分資料未匯入</span></td><td><span>查看 </span><code>edp_custom_error_log</code><span>，或確認 GHG 是否已建立對應據點</span></td></tr><tr><td><span>GHG API 匯入失敗</span></td><td><span>查看 </span><code>CompareSaveAndImportEdpDiffsTasklet</code><span> Log，確認 GHG 服務是否正常</span></td></tr><tr><td><span>同步狀態一直 RUNNING</span></td><td><span>檢查 </span><code>AirbyteSyncWindow</code><span> 資料表的狀態，可能 Webhook 未正確回呼</span></td></tr><tr><td><span>重複執行同一 SiteId 的 Job</span></td><td><code>BatchTaskService.executeEdpToGhgJob()</code><span> 有保護，同一 SiteId 有 Job 正在執行時會拒絕新的請求</span></td></tr><tr><td><span>報告書無法匯出</span></td><td><span>系統同步任務執行中時，GHG 會鎖定清冊/報告書產出；查詢 </span><code>GET /api/v2/batch/system-sync-status</code><span> 確認狀態</span></td></tr></tbody></table></figure><hr /><h2 id='6-擴充指引'><span>6. 擴充指引</span></h2><h3 id='新增-scope-類型轉換-或-新增資料轉換邏輯'><span>新增 Scope 類型轉換 或 新增資料轉換邏輯</span></h3><ol start='' ><li><p><span>在 </span><code>TransferScopeType</code><span> Enum 新增 Scope 類型定義</span></p></li><li><p><span>實作 </span><code>ITransferScopeService</code><span>，建立 </span><code>TransferScopeXxxService</code></p><ul><li><p><span>實作 </span><code>getTransferScopeType()</code></p></li><li><p><span>實作 </span><code>rawDataGroupToEdpMain()</code><span>（Raw Data → EdpCustomMain）</span></p></li><li><p><span>實作 </span><code>edpMainToEmissionSourceExtension()</code><span> / </span><code>edpMainToActivityDataExtension()</code><span>（GHG 額外資訊）</span></p></li></ul></li><li><p><code>TransferScopeFactory</code><span> 會在 </span><code>@PostConstruct</code><span> 自動掃描並註冊，無需手動修改</span></p></li><li><p><code>RawDataGroupType</code><span> 新增 分群後判斷類型 (資料分群類型 對應 TransferScopeType)</span></p></li></ol><h3 id='edp-調整-下拉選單選項'><span>EDP 調整 下拉選單選項</span></h3><ol start='' ><li><p><span>檢查 </span><code>TranferScopeXxxService</code><span> 中是否有對應的下拉選單轉換邏輯（例如 Scope 1.4 冷媒類型）</span></p></li><li><p><span>若只是調整項目名稱、擴充項目選項，更新 </span><code>edpCustomDataMap</code><span> 資料表即可（Key 對應 EDP Raw Data DB 的 TopicDropdown 表中的 key，Value 對應 GHG 系統的資料）</span></p></li></ol><h3 id='新增-batch-job-step'><span>新增 Batch Job Step</span></h3><ol start='' ><li><p><span>在 </span><code>BatchConfig</code><span> 建立新的 </span><code>@Bean Step</code></p></li><li><p><span>在 </span><code>readReportAndGroupQuestionsJob()</code><span> 的 </span><code>.next()</code><span> 串入新 Step</span></p></li><li><p><span>若需要 Tasklet，建立新的 </span><code>XxxTasklet implements Tasklet</code></p></li></ol><h3 id='新增異常通知-email-類型'><span>新增異常通知 Email 類型</span></h3><ol start='' ><li><p><span>建立新的 </span><code>XxxEmailParameter extends AbstractEmailParameter</code></p></li><li><p><span>在 </span><code>EmailService</code><span> 新增發送方法</span></p></li><li><p><span>建立對應的 HTML 模板（TW / EN）</span></p></li><li><p><span>在對應新的異常情境捕捉到的地方呼叫 </span><code>EmailService.sendXxxEmail()</code></p></li></ol><hr /><h2 id='7-ghg-open-api-----匯入資料端點adapter-openapi'><span>7. GHG Open API — 匯入資料端點（adapter-openapi）</span></h2><blockquote><p><span>edp-custom 最終透過 </span><code>GhgImportService → IGhgClient</code><span> 呼叫此端點，將轉換後的資料寫入 GHG 系統。</span></p></blockquote><h3 id='端點'><span>端點</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>POST</span></td><td><code>/oapi/v2/import-data/api-format</code></td><td><span>依 CREATE / UPDATE / DELETE 三種動作匯入排放源與活動數據</span></td></tr></tbody></table></figure><blockquote><p><span>前綴 </span><code>/oapi</code><span> 表示此端點屬於 Open API（</span><code>adapter-openapi</code><span> 模組），與一般 </span><code>/api</code><span> 端點權限控管方式不同，驗證方式是走 client / credential。</span></p></blockquote><hr /><h3 id='request-bodyghgimportdto'><span>Request Body（</span><code>GhgImportDto</code><span>）</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="json" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="json"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-string cm-property">"systemName"</span>: <span class="cm-string">"EDP"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-string cm-property">"ghgImportData"</span>: {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-string cm-property">"CREATE"</span>: [</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"siteId"</span>: <span class="cm-string">"3"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"annual"</span>: <span class="cm-number">2023</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"emissionSourceList"</span>: [</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"importId"</span>: <span class="cm-string">"3_2023_冰水機 Chiller - R-134a"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"scope"</span>: <span class="cm-string">"ISO_1_4"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"name"</span>: <span class="cm-string">"冰水機 Chiller - R-134a"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"frequency"</span>: <span class="cm-string">"YEARLY"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"emissionSourceExtensionList"</span>: [</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  { <span class="cm-string cm-property">"extensionKey"</span>: <span class="cm-string">"REFRIGERANT_TYPE"</span>, <span class="cm-string cm-property">"extensionName"</span>: <span class="cm-string">"冷媒類型"</span>, <span class="cm-string cm-property">"extensionValue"</span>: <span class="cm-string">"R-134a"</span> },</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  { <span class="cm-string cm-property">"extensionKey"</span>: <span class="cm-string">"EQUIPMENT_NAME"</span>, &nbsp; <span class="cm-string cm-property">"extensionName"</span>: <span class="cm-string">"設備名稱"</span>, <span class="cm-string cm-property">"extensionValue"</span>: <span class="cm-string">"冰水機 Chiller"</span> }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"activityDataList"</span>: [</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"importId"</span>: <span class="cm-string">"15278_371128"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"activityData"</span>: <span class="cm-number">1.03</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"unit"</span>: <span class="cm-string">"Tonne (公噸)"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"startDate"</span>: <span class="cm-string">"2023-01-01T00:00:00Z"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"endDate"</span>: <span class="cm-string">"2023-12-31T00:00:00Z"</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string cm-property">"activityDataExtensionList"</span>: []</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  ]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  ],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-string cm-property">"UPDATE"</span>: [],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-string cm-property">"DELETE"</span>: []</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 852px;"></div><div class="CodeMirror-gutters" style="display: none; height: 852px;"></div></div></div></pre><figure class='table-figure'><table><thead><tr><th><span>欄位</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><code>systemName</code></td><td><span>匯入來源系統名稱，EDP 場景固定帶 </span><code>&quot;EDP&quot;</code></td></tr><tr><td><code>ghgImportData</code></td><td><span>以 </span><code>CREATE</code><span> / </span><code>UPDATE</code><span> / </span><code>DELETE</code><span> 為 key，值為 </span><code>SiteImportDto[]</code></td></tr><tr><td><code>siteId</code></td><td><span>GHG 系統中的據點 ID</span></td></tr><tr><td><code>annual</code></td><td><span>年度</span></td></tr><tr><td><code>importId</code><span>（排放源）</span></td><td><span>排放源的唯一識別碼，格式由來源系統自訂（EDP 格式：</span><code>{siteId}_{annual}_{排放源名稱}</code><span>）</span></td></tr><tr><td><code>scope</code></td><td><span>排放源範疇代碼（e.g., </span><code>ISO_1_1</code><span>, </span><code>ISO_1_4</code><span>, </span><code>ISO_2_1</code><span> ...）</span></td></tr><tr><td><code>frequency</code></td><td><span>活動數據填報頻率：</span><code>YEARLY</code><span> / </span><code>QUARTERLY</code><span> / </span><code>MONTHLY</code><span> / </span><code>HALF_YEARLY</code></td></tr><tr><td><code>importId</code><span>（活動數據）</span></td><td><span>活動數據的唯一識別碼: </span><code>{reportId}_{reportFormId第一題}_{排放源名稱}</code></td></tr><tr><td><code>emissionSourceExtensionList</code></td><td><span>排放源額外資訊（e.g., 冷媒類型、設備名稱）</span></td></tr><tr><td><code>activityDataExtensionList</code></td><td><span>活動數據額外資訊</span></td></tr></tbody></table></figure><hr /><h3 id='三種-actiontype-的處理邏輯'><span>三種 ActionType 的處理邏輯</span></h3><figure class='table-figure'><table><thead><tr><th><span>ActionType</span></th><th><span>排放源 importId 存在</span></th><th><span>活動數據 importId 存在</span></th><th><span>執行動作</span></th></tr></thead><tbody><tr><td><strong><span>CREATE</span></strong></td><td><span>✗</span></td><td><span>—</span></td><td><span>新增排放源 + 活動數據</span></td></tr><tr><td><strong><span>CREATE</span></strong></td><td><span>✓</span></td><td><span>✗</span></td><td><span>在既有排放源下新增活動數據</span></td></tr><tr><td><strong><span>CREATE</span></strong></td><td><span>✓</span></td><td><span>✓</span></td><td><span>略過（已存在）</span></td></tr><tr><td><strong><span>UPDATE</span></strong></td><td><span>✗</span></td><td><span>—</span></td><td><span>新增排放源 + 活動數據</span></td></tr><tr><td><strong><span>UPDATE</span></strong></td><td><span>✓</span></td><td><span>✗</span></td><td><span>更新排放源資訊，新增活動數據</span></td></tr><tr><td><strong><span>UPDATE</span></strong></td><td><span>✓</span></td><td><span>✓</span></td><td><span>更新排放源 + 活動數據</span></td></tr><tr><td><strong><span>DELETE</span></strong></td><td><span>✗</span></td><td><span>—</span></td><td><span>略過</span></td></tr><tr><td><strong><span>DELETE</span></strong></td><td><span>✓</span></td><td><span>✗</span></td><td><span>略過</span></td></tr><tr><td><strong><span>DELETE</span></strong></td><td><span>✓</span></td><td><span>✓</span></td><td><span>刪除活動數據（排放源不刪）</span></td></tr></tbody></table></figure><hr /><h3 id='匯入後的後處理流程'><span>匯入後的後處理流程</span></h3><p><code>ImportDataController</code><span> 在呼叫 </span><code>importDataApiService.importData()</code><span> 成功後，還會執行以下後處理（失敗不影響主流程，僅記錄 </span><code>ImportStatus</code><span>）：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">importData()</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 清除 Entity Cache</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → emissionSourceEditService.updateEmissionSourceCoef() &nbsp; ← 依係數推薦設定係數資訊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → emissionSourceStatusService.recheckEmissionSourceReadyStatus()  ← 重新檢核排放源資料完整狀態</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → activityDataRatioService.setAdRatioByEmissionSource()  ← 設定活動數據公司分配比例</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → activityDataSummaryService.setAdSummaryByEmissionSource() ← 更新活動數據總表</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → (非同步) companySiteCo2EmissionService.resetSiteCo2EmissionSummary() ← 重新計算據點 CO₂ 排放當量</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 161px;"></div><div class="CodeMirror-gutters" style="display: none; height: 161px;"></div></div></div></pre><hr /><h3 id='response'><span>Response</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="json"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="json"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-string cm-property">"CREATE"</span>: { <span class="cm-string cm-property">"EMISSION_SOURCE"</span>: <span class="cm-number">2</span>, <span class="cm-string cm-property">"ACTIVITY_DATA"</span>: <span class="cm-number">5</span>, <span class="cm-string cm-property">"SITE_ANNUAL"</span>: <span class="cm-number">1</span> },</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-string cm-property">"UPDATE"</span>: { <span class="cm-string cm-property">"EMISSION_SOURCE"</span>: <span class="cm-number">1</span>, <span class="cm-string cm-property">"ACTIVITY_DATA"</span>: <span class="cm-number">3</span>, <span class="cm-string cm-property">"SITE_ANNUAL"</span>: <span class="cm-number">0</span> },</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-string cm-property">"DELETE"</span>: { <span class="cm-string cm-property">"EMISSION_SOURCE"</span>: <span class="cm-number">0</span>, <span class="cm-string cm-property">"ACTIVITY_DATA"</span>: <span class="cm-number">2</span>, <span class="cm-string cm-property">"SITE_ANNUAL"</span>: <span class="cm-number">0</span> }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 115px;"></div></div></div></pre><p><span>回傳各 ActionType 下，實際執行的排放源（</span><code>EMISSION_SOURCE</code><span>）、活動數據（</span><code>ACTIVITY_DATA</code><span>）、據點年度（</span><code>SITE_ANNUAL</code><span>）筆數。</span></p><hr /><h3 id='importstatus-說明'><span>ImportStatus 說明</span></h3><figure class='table-figure'><table><thead><tr><th><span>狀態碼</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><code>SUCCESS</code></td><td><span>匯入成功（後處理全部正常）</span></td></tr><tr><td><code>FAIL</code></td><td><span>匯入失敗（主流程拋出例外）</span></td></tr><tr><td><code>COEF_FAIL</code></td><td><span>更新係數失敗（不影響匯入結果）</span></td></tr><tr><td><code>CHECK_STATUS_FAIL</code></td><td><span>更新排放源狀態失敗（不影響匯入結果）</span></td></tr><tr><td><code>UPDATE_RATIO_FAIL</code></td><td><span>更新公司比例失敗（不影響匯入結果）</span></td></tr><tr><td><code>UPDATE_AD_SUM_FAIL</code></td><td><span>更新活動數據總表失敗（不影響匯入結果）</span></td></tr></tbody></table></figure><hr /><h3 id='importdatalog-匯入紀錄'><span>import_data_log 匯入紀錄</span></h3><p><span>每次呼叫 </span><code>POST /oapi/v2/import-data/api-format</code><span> 時，</span><code>ImportDataController</code><span> 都會透過 </span><code>ImportDataLogService.createImportDataLogFromAPI()</code><span> 在 </span><strong><span>GHG 主 DB</span></strong><span> 的 </span><code>import_data_log</code><span> 資料表中建立一筆匯入紀錄，記錄本次 API 匯入的完整資訊。</span></p><figure class='table-figure'><table><thead><tr><th><span>欄位</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><code>id</code></td><td><span>匯入紀錄唯一識別碼（UUID）</span></td></tr><tr><td><code>start_time</code></td><td><span>匯入開始時間</span></td></tr><tr><td><code>end_time</code></td><td><span>匯入結束時間（執行完成或失敗後更新）</span></td></tr><tr><td><code>source_system</code></td><td><span>匯入來源系統（EDP 呼叫時帶入 </span><code>&quot;EDP&quot;</code><span>，即 </span><code>GhgImportDto.systemName</code><span>）</span></td></tr><tr><td><code>import_type</code></td><td><span>匯入方式（EDP API 呼叫固定為 </span><code>API</code><span>）</span></td></tr><tr><td><code>import_status</code></td><td><span>匯入狀態（見 ImportStatus 說明）</span></td></tr><tr><td><code>import_request</code></td><td><span>匯入請求資料（儲存完整 </span><code>GhgImportDto</code><span> JSON 字串，可用於排查問題）</span></td></tr><tr><td><code>import_result</code></td><td><span>匯入結果（成功時為 result map 字串；失敗時為例外訊息）</span></td></tr></tbody></table></figure><blockquote><p><strong><span>排放源 / 活動數據 回溯</span></strong><span>：</span><code>emission_source_main</code><span> 與 </span><code>activity_data_main</code><span> 兩張資料表均有 </span><code>fk_import_data_log_id</code><span> 欄位，記錄該筆資料是由哪一次匯入所建立或更新，可透過此欄位追溯到對應的 </span><code>import_data_log</code><span> 紀錄。</span></p></blockquote></div></div>
+</body>
+</html>

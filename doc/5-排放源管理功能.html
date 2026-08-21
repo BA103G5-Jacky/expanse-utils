@@ -1,0 +1,713 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'><style type='text/css'>html {overflow-x: initial !important;}</style>
+<style type='text/css'  id="style-base">:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI Emoji", "SF Pro", sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p *, #write.first-line-indent svg * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
+.nodeLabel p { padding-right: 2px; padding-left: 2px; }
+.typora-export .nodeLabel p { padding-right: 0px; padding-left: 0px; }
+foreignobject { overflow: visible; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+li p { orphans: 1; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+</style>
+<style type='text/css'  id="style-codemirror">.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+</style>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&amp;subset=latin,latin-ext' type='text/css' />
+<style type='text/css'  id="style-theme_css">:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', 'SF Pro', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+</style>
+<style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
+
+<title>5-排放源管理功能</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='排放源管理'><span>排放源管理</span></h1><blockquote><p><strong><span>所屬模組</span></strong><span>：adapter-rest / application</span>
+<strong><span>最後更新</span></strong><span>：2026-03-03</span></p></blockquote><hr /><h2 id='1-功能簡述'><span>1. 功能簡述</span></h2><p><span>排放源管理 GHG 碳盤查的核心數據功能：</span></p><ul><li><p><strong><span>排放源 CRUD</span></strong><span>：新增、查詢、更新、刪除 排放源</span></p></li><li><p><strong><span>Scope 查詢</span></strong><span> : 取得 Scope 範疇資料</span></p></li><li><p><strong><span>活動數據管理</span></strong><span>：填寫排放源的活動數據</span></p></li><li><p><strong><span>排放源複製</span></strong><span>：從現有範疇複製排放源 or 過往的年度複製排放源</span></p></li><li><p><strong><span>Excel 匯入</span></strong><span>：批量匯入排放源資料、活動數據資料</span></p></li><li><p><strong><span>運輸工具下拉</span></strong><span>:新增、查詢、更新、刪除 運輸下拉選單</span></p></li></ul><figure class='table-figure'><table><thead><tr><th><span>角色</span></th><th><span>操作權限</span></th></tr></thead><tbody><tr><td><span>Admin</span></td><td><span>完整 CRUD</span></td></tr><tr><td><span>據點管理員(SO)</span></td><td><span>管理被指派據點的排放源</span></td></tr><tr><td><span>填寫人員(DE)</span></td><td><span>填寫被指派排放源的活動數據</span></td></tr></tbody></table></figure><hr /><h2 id='2-架構設計'><span>2. 架構設計</span></h2><h3 id='排放源---核心類別'><span>排放源 - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>EmissionSourceController</code></td><td><span>排放源 API</span></td></tr><tr><td><span>Service</span></td><td><code>EmissionSourceService</code></td><td><span>排放源 查詢 業務邏輯</span></td></tr><tr><td><span>Service</span></td><td><code>EmissionSourceEditService</code></td><td><span>排放源 編輯/新增/刪除 業務邏輯</span></td></tr><tr><td><span>Service</span></td><td><code>EmissionSourceStatusService</code></td><td><span>排放源 狀態 業務邏輯</span></td></tr><tr><td><span>Service</span></td><td><code>AsyncResetEmissionSourceService</code></td><td><span>非同步重置 排放源相關資料</span></td></tr><tr><td><span>Utils</span></td><td><code>EmissionSourceUtils</code></td><td><span>排放源 工具</span></td></tr><tr><td><span>Repository</span></td><td><code>EmissionSourceRepository</code></td><td><span>排放源 資料存取</span></td></tr><tr><td><span>Repository</span></td><td><code>EmissionSourceExtensionRepository</code></td><td><span>排放源額外資料 資料存取</span></td></tr></tbody></table></figure><h3 id='活動數據---核心類別'><span>活動數據 - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>ActivityDataController</code></td><td><span>活動數據 API</span></td></tr><tr><td><span>Service</span></td><td><code>ActivityDataService</code></td><td><span>活動數據 業務邏輯</span></td></tr><tr><td><span>Service</span></td><td><code>ActivityDataSummaryService</code></td><td><span>公司據點溫室氣體排放活動數據總表 業務邏輯</span></td></tr><tr><td><span>Repository</span></td><td><code>ActivityDataRepository</code></td><td><span>活動數據 資料存取</span></td></tr><tr><td><span>Repository</span></td><td><code>ActivityDataExtensionRepository</code></td><td><span>活動數據額外資料 資料存取</span></td></tr><tr><td><span>Repository</span></td><td><code>SiteActivityDataCompanyRatioRepository</code></td><td><span>活動數據分配比例 資料存取</span></td></tr><tr><td><span>Repository</span></td><td><code>CompanySiteActivityDataSummaryRepository</code></td><td><span>活動數據分配後總表 資料存取</span></td></tr></tbody></table></figure><h3 id='scope---核心類別'><span>Scope - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>ScopeController</code></td><td><span>Scope API</span></td></tr><tr><td><span>Service</span></td><td><code>ScopeService</code></td><td><span>Scope Service</span></td></tr><tr><td><span>Repository</span></td><td><code>ScopeMainRepository</code></td><td><span>Scope 資料存取</span></td></tr><tr><td><span>Repository</span></td><td><code>ScopeNameRepository</code></td><td><span>Scope Name i18n 資料存取</span></td></tr></tbody></table></figure><h3 id='匯入-excel---核心類別'><span>匯入 Excel - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>ImportExcelController</code></td><td><span>匯入排放源/活動數據 API</span></td></tr><tr><td><span>Service</span></td><td><code>ImportDataExcelService</code></td><td><span>匯入排放源/活動數據 業務邏輯</span></td></tr></tbody></table></figure><h3 id='下拉選單---核心類別'><span>下拉選單 - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>DropdownController</code></td><td><span>下拉選單 API</span></td></tr><tr><td><span>Service</span></td><td><code>DropdownService</code></td><td><span>下拉選單 業務邏輯</span></td></tr><tr><td><span>Service</span></td><td><code>EmissionSourceDropdownService</code></td><td><span>排放源下拉選單 業務邏輯</span></td></tr></tbody></table></figure><h3 id='係數紀錄---核心類別'><span>係數紀錄 - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>CoefRecordController</code></td><td><span>係數選擇紀錄 API</span></td></tr><tr><td><span>Service</span></td><td><code>CoefRecordService</code></td><td><span>係數選擇紀錄 業務邏輯</span></td></tr><tr><td><span>Repository</span></td><td><code>CoefRecordMainRepository</code></td><td><span>係數選擇紀錄 資料存取</span></td></tr></tbody></table></figure><h3 id='運輸工具下拉---核心類別'><span>運輸工具下拉 - 核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>層級</span></th><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><span>Controller</span></td><td><code>TransportVehicleOptionController</code></td><td><span>運輸工具下拉選單 API</span></td></tr><tr><td><span>Service</span></td><td><code>TransportVehicleOptionService</code></td><td><span>運輸工具下拉選單 業務邏輯</span></td></tr><tr><td><span>Repository</span></td><td><code>TransportVehicleOptionRepository</code></td><td><span>運輸工具下拉選單 資料存取</span></td></tr></tbody></table></figure><h3 id='排放源結構'><span>排放源結構</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">ScopeMain (子範疇)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── EmissionSourceMain (排放源) → 通用資料</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; ├── EmissionSourceExtensionMain (排放源額外資料) → 依照不同排放源類型有所不同 (Row Base)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; └── ActivityDataMain (活動數據) → 通用資料</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ├── ActivityDataExtension (活動數據額外資料) → 依照不同排放源類型有所不同 (Row Base)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ├── SiteActivityDataCompanyRatio (活動數據分配比例) → 目前沒有分配到不同公司，分配比例都是 1</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  └── CompanySiteActivityDataSummaryRepository (活動數據攤平總表) → 紀錄據點公司下的每筆活動數據，平均每日的活動數據量</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 184px;"></div><div class="CodeMirror-gutters" style="display: none; height: 184px;"></div></div></div></pre><h3 id='iso--ghg-類別'><span>ISO / GHG 類別</span></h3><ul><li><p><span>DB 存的排放源以 ISO Scope 為主</span></p></li><li><p><span>透過 </span><code>ScopeCodeMapping</code><span> 在 Service層 轉換出對應的 GHG Scope</span></p></li></ul><hr /><h2 id='3-常用-api-清單'><span>3. 常用 API 清單</span></h2><h3 id='排放源'><span>排放源</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/emission-sources/{emissionSourceId}/edit</code></td><td><span>取得 排放源資料 For 編輯, By 排放源ID</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/emission-sources/by-site-annual-scope</code></td><td><span>取得 排放源清單, By 據點ID 和 年度 和 範疇, For 排放源列表, 只有據點管理員可使用</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/emission-sources/by-site-annual-scope/with-ad</code></td><td><span>取得 排放源清單, By 據點ID 和 年度 和 範疇, For 活動數據填寫, 據點管理員 &amp; 填寫人員可使用</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/emission-sources</code></td><td><span>新增 排放源 資料 (多筆)</span></td><td><span>EMISSION_SOURCE - CREATE</span></td></tr><tr><td><span>PUT</span></td><td><code>/api/v2/emission-sources</code></td><td><span>&quot;更新 排放源 資料 (多筆)</span></td><td><span>EMISSION_SOURCE - UPDATE</span></td></tr><tr><td><span>PUT</span></td><td><code>/api/v2/emission-sources/data-source</code></td><td><span>更新 排放源 資料來源, For 活動數據填寫, 所有角色可使用</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>DELETE</span></td><td><code>/api/v2/emission-sources</code></td><td><span>刪除 排放源 資料 (多筆)</span></td><td><span>EMISSION_SOURCE - DELETE</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/emission-sources/tree</code></td><td><span>取得排放源名稱樹 (For 跨年度複製)</span></td><td><span>EMISSION_SOURCE - CREATE</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/emission-sources/copy-to-annual</code></td><td><span>複製 指定排放源 至 指定年度 (For 跨年度複製)</span></td><td><span>EMISSION_SOURCE - CREATE</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/emission-sources/copyable-list</code></td><td><span>取得可複製的排放源清單(同據點年度), For 複製排放源功能, 只有據點管理員可使用</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr></tbody></table></figure><h3 id='scope'><span>Scope</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/scope</code></td><td><span>取得 Scope 樹狀結構資料 (多個樹狀結構)</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/scope/by-site-annual</code></td><td><span>取得單個 Scope 樹狀結構資料, By 據點 &amp; 年度 (可指定 ProtocolType)</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr></tbody></table></figure><h3 id='匯入'><span>匯入</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/import-excel/template/emission</code></td><td><span>下載排放源 Excel 匯入範本檔案</span></td><td><span>-</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/import-excel/emission</code></td><td><span>上傳排放源資料 Excel 並匯入 (含驗證)</span></td><td><span>-</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/import-excel/template/activity-data</code></td><td><span>下載活動數據 Excel 匯入範本檔案</span></td><td><span>-</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/import-excel/activity-data</code></td><td><span>上傳活動數據資料 Excel 並匯入 (含驗證)</span></td><td><span>-</span></td></tr></tbody></table></figure><h3 id='下拉選單'><span>下拉選單</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/unit</code></td><td><span>取得單位下拉選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/scope</code></td><td><span>取得範疇下拉選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/root-scope</code></td><td><span>取得溫盤標準選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/subcategory</code></td><td><span>範疇子分類類型下拉清單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/fugitive-type</code></td><td><span>取得逸散計算方式下拉選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/ipccAr-unique-names</code></td><td><span>取得冷媒類型下拉選單</span></td><td><span>COEFFICIENT - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/refrigerant-equipment</code></td><td><span>取得冷媒設備類型下拉選單</span></td><td><span>COEFFICIENT - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/electricity-type</code></td><td><span>取得電力類型下拉選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/transport-type</code></td><td><span>取得運輸類型下拉選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/dropdown/trip-type</code></td><td><span>取得運輸單趟來回下拉選單</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr></tbody></table></figure><h3 id='係數選擇紀錄'><span>係數選擇紀錄</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/coef-record</code></td><td><span>取得 係數選擇紀錄</span></td><td><span>EMISSION_SROUCE - CREATE</span></td></tr><tr><td><span>GET</span></td><td><code>/api/v2/coef-record/transport</code></td><td><span>取得 運輸類係數選擇紀錄</span></td><td><span>EMISSION_SOURCE - CREATE</span></td></tr></tbody></table></figure><h3 id='運輸工具下拉選單'><span>運輸工具下拉選單</span></h3><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/transport-vehicle-options/dropdown</code></td><td><span>取得運輸工具下拉選單列表</span></td><td><span>EMISSION_SOURCE - READ</span></td></tr><tr><td><span>POST</span></td><td><code>/api/v2/transport-vehicle-options</code></td><td><span>新增運輸工具下拉選單（使用者自訂）</span></td><td><span>EMISSION_SOURCE - CREATE</span></td></tr><tr><td><span>PUT</span></td><td><code>/api/v2/transport-vehicle-options/{id}</code></td><td><span>編輯運輸工具選項（使用者自訂）</span></td><td><span>EMISSION_SOURCE - UPDATE</span></td></tr><tr><td><span>DELETE</span></td><td><code>/api/v2/transport-vehicle-options/{id}</code></td><td><span>刪除運輸工具選項（使用者自訂）</span></td><td><span>EMISSION_SOURCE - DELETE</span></td></tr></tbody></table></figure><hr /><h2 id='4-業務邏輯'><span>4. 業務邏輯</span></h2><h3 id='service-職責分工'><span>Service 職責分工</span></h3><h4 id='排放源相關'><span>排放源相關</span></h4><figure class='table-figure'><table><thead><tr><th><span>Service</span></th><th><span>職責說明</span></th></tr></thead><tbody><tr><td><code>EmissionSourceService</code></td><td><span>排放源查詢邏輯，取得排放源資料、組合各項資訊（據點、係數、冷媒設備、活動數據等）</span></td></tr><tr><td><code>EmissionSourceEditService</code></td><td><span>排放源新增/更新/刪除邏輯，包含驗證、執行儲存、複製排放源</span></td></tr><tr><td><code>EmissionSourceStatusService</code></td><td><span>排放源完整狀態管理，檢核並更新排放源與活動數據的資料完整狀態</span></td></tr><tr><td><code>EmissionSourceDropdownService</code></td><td><span>排放源相關下拉選單（逸散計算方式、電力類型、運輸類型等）</span></td></tr><tr><td><code>AsyncResetEmissionSourceService</code></td><td><span>非同步重置排放源相關資料（如重新計算 CO2 排放量）</span></td></tr></tbody></table></figure><h4 id='活動數據相關'><span>活動數據相關</span></h4><figure class='table-figure'><table><thead><tr><th><span>Service</span></th><th><span>職責說明</span></th></tr></thead><tbody><tr><td><code>ActivityDataService</code></td><td><span>活動數據 CRUD、計算二氧化碳當量、檢核活動數據完整狀態</span></td></tr><tr><td><code>ActivityDataRatioService</code></td><td><span>活動數據公司分配比例管理（目前預設比例為 1）</span></td></tr><tr><td><code>ActivityDataSummaryService</code></td><td><span>公司據點活動數據總表，計算平均每日活動數據量</span></td></tr></tbody></table></figure><h4 id='其他相關'><span>其他相關</span></h4><figure class='table-figure'><table><thead><tr><th><span>Service</span></th><th><span>職責說明</span></th></tr></thead><tbody><tr><td><code>ScopeService</code></td><td><span>Scope 範疇查詢、樹狀結構建立、ISO/GHG 轉換</span></td></tr><tr><td><code>ImportDataExcelService</code></td><td><span>Excel 匯入排放源/活動數據，包含驗證與後續狀態更新</span></td></tr><tr><td><code>CoefRecordService</code></td><td><span>係數選擇紀錄管理，紀錄使用者過往選過的係數</span></td></tr><tr><td><code>TransportVehicleOptionService</code></td><td><span>運輸工具下拉選單管理（系統內建 + 使用者自訂）</span></td></tr><tr><td><code>DropdownService</code></td><td><span>通用下拉選單（單位、範疇等）</span></td></tr></tbody></table></figure><hr /><h3 id='emissionsourceservice排放源查詢'><span>EmissionSourceService（排放源查詢）</span></h3><p><span>負責排放源資料的查詢與組合：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">getEmissionSourceById(id)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 查詢 EmissionSourceMain</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 查詢 EmissionSourceExtension（Row Base）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 組合據點資訊、係數資訊、冷媒設備資訊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 組合活動數據清單</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 設定佐證資料</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 回傳 EmissionSourceWithActivityDataDto</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">getEmissionSourceListByIdListAndDate(idList, startDate, endDate)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 批次查詢排放源</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 設定總和活動數據（依時間區間切割計算每日活動數據量）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 回傳 EmissionSourceDto List</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 276px;"></div><div class="CodeMirror-gutters" style="display: none; height: 276px;"></div></div></div></pre><p><strong><span>Enrich 資料來源</span></strong><span>：據點資訊、係數資訊、冷媒設備資訊、運輸工具、佐證資料、指派填寫人員</span></p><h3 id='排放源-查詢'><span>排放源 查詢</span></h3><ul><li><p><span>排放源查詢 Service 統一放在 </span><code>EmissionSourceService</code></p></li><li><p><span>最核心的兩個取得排放源資料 Function </span><strong><span>取得單筆排放源</span></strong><span>:</span><code>getEmissionSourceById</code><span>、</span><strong><span>取得多筆排放源</span></strong><span>:</span><code>getEmissionSourceListByIdListAndDate</code></p></li><li><p><span>包含各種排放源資訊 enrich，都是先查出 Map 資料，再組回 </span><code>EmissionSourceDto</code><span> e.g., 據點資訊、係數資訊、冷媒設備資訊、總和活動數據、佐證資料、...</span></p></li><li><p><span>在後端內 都是用 </span><code>EmissionSourceDto</code><span> 在各個 Service 間互相使用 e.g., 匯出清冊取得排放源、匯出報告書取得排放源、...</span></p></li><li><p><span>回覆給前端的 會在 </span><code>adapter-rest</code><span> Controller層，透過 Converter 轉換回 Response 物件，只留下前端需要的欄位，多於欄位會省略</span></p></li><li><p><code>Extension</code><span> 額外資訊會在 </span><code>adatper-rest</code><span> Controller層，透過 Converter 轉成固定的欄位</span></p></li><li><p><code>getEmissionSourceListByIdListAndDate</code><span> 在設定總和活動數據 </span><code>setTotalActivityData</code><span> 會針對活動數據起訖日，切齊傳入的時間區間 (計算到每日活動數據)</span></p></li></ul><h3 id='排放源--活動數據-extension'><span>排放源 / 活動數據 Extension</span></h3><ul><li><p><span>依照不同的排放源/活動數據類型，會有不同的額外資訊欄位</span></p></li><li><p><code>EmissionSourceExtensionType</code><span>、</span><code>ActivityDataExtensionType</code><span> 定義有哪些額外資訊欄位</span></p></li><li><p><span>存入 </span><code>EmissionSourceExtension</code><span>、</span><code>ActivityDataExtension</code><span> 以 Row Base 設計，一筆排放源/活動數據 會對應到多筆 Extension</span></p></li><li><p><span>在 </span><code>adatper-rest</code><span> Controller層，透過 Converter 轉成固定的欄位，回傳給前端</span></p></li><li><p><code>IEmissionSourceVoConverter</code><span> </span><code>convertExtensionToMap</code><span> 前端傳入的 ExtensionVo to Row Base Map、</span><code>convertExtensionToVo</code><span> 後端的 Row Base Map to 回傳給前端的 ExtensionVo</span></p></li></ul><h3 id='iso--ghg-scope-轉換'><span>ISO / GHG Scope 轉換</span></h3><ul><li><p><span>DB 以 ISO Scope 為主</span></p></li><li><p><span>在 Service層 透過 </span><code>ScopeCodeMapping</code><span> 轉換對應的 GHG Protocol Scope</span></p></li></ul><hr /><h3 id='emissionsourceeditservice排放源編輯'><span>EmissionSourceEditService（排放源編輯）</span></h3><p><span>負責排放源的新增/更新/刪除：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">createEmissionSourceList(siteId, annual, emissionSourceDtoList)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 驗證排放源資料（名稱唯一、必填欄位、係數存在等）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → executeCreateEmissionSource() 執行新增</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">importEmissionSourceList(siteId, annual, emissionSourceDtoList)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → Excel 匯入專用驗證（收集所有錯誤）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → executeCreateEmissionSource() 執行新增</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">executeCreateEmissionSource()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 寫入 EmissionSourceMain</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 攤平儲存 EmissionSourceExtension</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 更新係數選擇紀錄 coefRecordService.saveCoefRecordByEmissionSourceList()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 指派填寫人員</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 建立佐證資料檔案關聯</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">copyEmissionSourceListToAnnual(idList, targetAnnual)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 複製排放源到指定年度</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 複製 Extension、指派填寫人員</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 415px;"></div><div class="CodeMirror-gutters" style="display: none; height: 415px;"></div></div></div></pre><h3 id='排放源-新刪修'><span>排放源 新/刪/修</span></h3><ul><li><p><span>排放源新/刪/修 Service 統一放在 </span><code>EmissionSourceEditService</code></p></li><li><p><span>新/刪/修 Function 都使支援多筆 idList</span></p></li><li><p><span>新增排放源 </span><code>createEmissionSourceList</code><span> 匯入排放源 </span><code>importEmissionSourceList</code><span> 有各自的檢核 function，驗證通過後，執行新增是共用 function </span><code>executeCreateEmissionSource</code></p></li><li><p><span>執行新增/更新 流程: 寫入 EmissionSourceMain → Extension 設定 FkEmissionSourceId 攤平存入 → 更新係屬選擇紀錄 </span><code>coefRecordService.saveCoefRecordByEmissionSourceList</code><span> → 指派填寫人員 → 建立排放源佐證資料檔案關聯</span></p></li><li><p><span>執行完新增/刪除/修改 在 </span><code>adatper-rest</code><span> Controller層 流程: 重新檢核更新 資料完整狀態 → (非同步) 重新計算 據點二氧化碳排放量總表</span></p></li></ul><h3 id='排放源複製'><span>排放源複製</span></h3><ul><li><p><strong><span>跨年度複製</span></strong><span>：從過往年度複製排放源</span></p></li><li><p><span>跨年度複製 是獨立的 API &amp; 業務邏輯 </span><code>copyEmissionSourceListToAnnual</code></p></li><li><p><span>依照 Id 複製排放源、排放源 Extension、指派填寫人員</span></p></li><li><p><strong><span>同年度複製</span></strong><span>：從同據點的其他範疇複製排放源結構</span></p></li><li><p><span>同年度複製 一樣是走一般的新增排放源流程，但多帶 </span><code>copyFromId</code><span> 欄位，建立排放源時，最後會複製活動數據資訊到新增的排放源</span></p></li><li><p><span>Scope 1/2 可複製到 Scope 3（4.2 燃料與能源）</span></p></li><li><p><span>ISO 2.1 電力僅允許特定類型（GREY, ONGRID_PPA, OFFGRID_PPA, GREEN_PROD）複製</span></p></li></ul><hr /><h3 id='emissionsourcestatusservice狀態管理'><span>EmissionSourceStatusService（狀態管理）</span></h3><p><span>負責排放源與活動數據的完整狀態檢核：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">recheckEmissionSourceReadyStatus(emissionSourceId)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 取得 EmissionSourceWithActivityDataDto</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 檢核排放源本身完整狀態（不含活動數據）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 逐筆檢核活動數據完整狀態（單位轉換、必填欄位等）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 更新 EmissionSourceMain.readyStatus</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 更新 ActivityDataMain.readyStatus</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 138px;"></div><div class="CodeMirror-gutters" style="display: none; height: 138px;"></div></div></div></pre><p><strong><span>狀態類型</span></strong><span>：</span></p><ul><li><p><code>EmissionSourceReadyStatus</code><span>：COMPLETE / ACTIVITY_DATA_INCOMPLETE / EMISSION_SOURCE_INCOMPLETE / COEF_UNASSIGNED / SCOPE_UNASSIGNED</span></p></li><li><p><code>ActivityDataReadyStatus</code><span>：COMPLETE / UNIT_UNMATCHED / EMISSION_SOURCE_INCOMPLETE / COEF_UNASSIGNED</span></p></li></ul><h3 id='排放源完成狀態'><span>排放源完成狀態</span></h3><ul><li><p><span>排放源完成狀態 Service 統一放在 </span><code>EmissionSourceStatusService</code></p></li><li><p><span>排放源 / 活動數據 的資料完整狀態 儲存在 DB </span><code>EmissionSourceMain</code><span> </span><code>ActivityDataMain</code></p></li><li><p><span>主要是 </span><code>recheckEmissionSourceReadyStatus</code><span> 重新檢核並更新 排放源 與 活動數據 資料完整狀態</span></p></li></ul><hr /><h3 id='activitydataservice活動數據'><span>ActivityDataService（活動數據）</span></h3><p><span>負責活動數據的 CRUD 與計算：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">getActivityDataById(id)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 查詢 ActivityDataMain + Extension</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 設定佐證資料</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 回傳 ActivityDataDto</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">updateActivityDataList(emissionSourceId, activityDataList)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 批次更新活動數據</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 計算二氧化碳當量</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 更新分配比例 &amp; 攤平總表</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">checkActivityDataReadyStatus(activityDataDto, ...)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 檢核活動數據完整狀態（單位可轉換、必填欄位等）</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 276px;"></div><div class="CodeMirror-gutters" style="display: none; height: 276px;"></div></div></div></pre><hr /><h3 id='activitydatasummaryservice活動數據總表'><span>ActivityDataSummaryService（活動數據總表）</span></h3><p><span>負責計算並儲存攤平後的活動數據：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">saveCompanySiteActivityDataSummary(emissionSourceWithActivityDataDto)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 刪除既有的攤平資料</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 依活動數據起訖日計算天數</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 計算平均每日活動數據量</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 儲存 CompanySiteActivityDataSummary</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 115px;"></div></div></div></pre><p><strong><span>用途</span></strong><span>：報告書、清冊 需依時間區間取得活動數據時使用</span></p><hr /><h3 id='scopeservice範疇管理'><span>ScopeService（範疇管理）</span></h3><p><span>負責 Scope 範疇查詢與樹狀結構：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">getScopesByLocale()</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 依使用者語系取得 Scope 資料（含 i18n 名稱）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 建立樹狀結構（透過 ScopeTreeBuilder）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 填充 ISO/GHG 對應資訊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">getScopeTreeBySiteIdAndAnnual(siteId, annual, protocolType)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 取得指定據點年度的 Scope 樹狀結構</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 支援 ISO / GHG Protocol 切換</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 184px;"></div><div class="CodeMirror-gutters" style="display: none; height: 184px;"></div></div></div></pre><hr /><h3 id='coefrecordservice係數紀錄'><span>CoefRecordService（係數紀錄）</span></h3><p><span>負責係數選擇紀錄的查詢與儲存：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">基本規則 Key: 據點 + 排放源名稱 + Scope + 年度</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">運輸類型 Key: 據點 + 運輸類型 + 運輸工具 Key + 年度</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">saveCoefRecordByEmissionSourceList(emissionSourceList)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 依排放源資料建立/更新係數選擇紀錄</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 紀錄 Location-based / Market-based 係數</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 138px;"></div><div class="CodeMirror-gutters" style="display: none; height: 138px;"></div></div></div></pre><p><strong><span>用途</span></strong><span>：新增排放源時，自動帶入上次選擇的係數</span></p><hr /><h3 id='transportvehicleoptionservice運輸工具下拉'><span>TransportVehicleOptionService（運輸工具下拉）</span></h3><p><span>負責運輸工具下拉選單管理：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">getOptions(siteId, transportType)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 取得系統內建選項（依 displayOrder 排序）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 取得使用者自訂選項（依建立時間排序）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 系統內建優先顯示</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">createOption(siteId, transportType, vehicleName)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  → 新增使用者自訂運輸工具選項</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 161px;"></div><div class="CodeMirror-gutters" style="display: none; height: 161px;"></div></div></div></pre><p><strong><span>資料結構</span></strong><span>：</span></p><ul><li><p><span>系統內建：id 為可讀 Code，名稱透過 i18n key 轉換</span></p></li><li><p><span>使用者自訂：id 為 UUID，名稱直接儲存</span></p></li></ul><hr /><h2 id='5-常見問題與排查'><span>5. 常見問題與排查</span></h2><figure class='table-figure'><table><thead><tr><th><span>問題</span></th><th><span>排查方向</span></th></tr></thead><tbody><tr><td><span>累計活動數據為空</span></td><td><span>檢查 活動數據單位與係數單位 是否對不上</span></td></tr><tr><td><span>累計活動數據數值對不上</span></td><td><span>檢查 活動數據是否有跨年度切割</span></td></tr><tr><td><span>排放源名稱重複錯誤</span></td><td><span>同據點同範疇下名稱必須唯一</span></td></tr><tr><td><span>Excel 匯入失敗</span></td><td><span>檢查 Excel 格式、必填欄位、Sheet 名稱是否正確</span></td></tr><tr><td><span>單位轉換失敗</span></td><td><span>檢查 </span><code>unit_exchange</code><span> 表是否有對應的轉換率</span></td></tr><tr><td><span>排放源額外欄位消失</span></td><td><span>檢查 </span><code>EmissionSourceExtensionMain</code><span> 資料是否正確存在</span></td></tr></tbody></table></figure><hr /><h2 id='6-擴充指引'><span>6. 擴充指引</span></h2><h3 id='新增-iso-分類'><span>新增 ISO 分類</span></h3><ol start='' ><li><p><span>在 </span><code>ScopeCodeMapping</code><span> Enum新增分類</span></p></li><li><p><span>在 </span><code>GhgEmissionsCalculator</code><span> 處理特殊計算邏輯</span></p></li><li><p><span>在 </span><code>adapter-provision/</code><span> 新增 Changelog 更新 Scope 資料</span></p></li><li><p><span>更新 </span><code>DropdownService</code><span> 下拉選單</span></p></li></ol><h3 id='新增排放源額外欄位'><span>新增排放源額外欄位</span></h3><ol start='' ><li><p><span>在 </span><code>EmissionSourceExtensionType</code><span> 定義新的 </span><code>extensionType</code></p></li><li><p><span>在 </span><code>EmissionSourceEditService</code><span> 處理欄位的檢核邏輯</span></p></li><li><p><span>在 </span><code>IEmissionSourceVoConverter</code><span> 處裡前端欄位轉換邏輯</span></p></li><li><p><span>更新前端表單對應欄位</span></p></li></ol><h3 id='新增系統預設運輸工具選項'><span>新增系統預設運輸工具選項</span></h3><ol start='' ><li><p><span>在 </span><code>transport_vehicle_option</code><span> DB 新增預設選項</span></p></li><li><p><span>新增對應的 i18n message properties</span></p></li></ol></div></div>
+</body>
+</html>

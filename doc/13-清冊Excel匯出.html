@@ -1,0 +1,703 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'><style type='text/css'>html {overflow-x: initial !important;}</style>
+<style type='text/css'  id="style-base">:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI Emoji", "SF Pro", sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p *, #write.first-line-indent svg * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
+.nodeLabel p { padding-right: 2px; padding-left: 2px; }
+.typora-export .nodeLabel p { padding-right: 0px; padding-left: 0px; }
+foreignobject { overflow: visible; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+li p { orphans: 1; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+</style>
+<style type='text/css'  id="style-codemirror">.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+</style>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&amp;subset=latin,latin-ext' type='text/css' />
+<style type='text/css'  id="style-theme_css">:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', 'SF Pro', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+</style>
+<style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
+
+<title>13-清冊Excel匯出</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='清冊-excel-匯出'><span>清冊 Excel 匯出</span></h1><blockquote><p><strong><span>所屬模組</span></strong><span>：application / adapter-rest</span><br/><strong><span>核心類別</span></strong><span>：</span><code>EmissionInventoryService.java</code><span>、</span><code>TotalInventoryService.java</code><span></span><br/><strong><span>最後更新</span></strong><span>：2026-04-22</span></p></blockquote><hr /><h2 id='1-功能簡述'><span>1. 功能簡述</span></h2><p><span>清冊 Excel 匯出是 GHG 碳盤查的最終產出，可依據指定年度、據點、GWP 版本、協定類型（ISO / GHG Protocol）匯出 Excel Zip 壓縮檔，內含：</span></p><ul><li><p><strong><span>單據點清冊</span></strong><span>：每個據點各產出一份完整的 Excel，包含基本資訊、盤查結果、各 Scope 排放數據、重大性評估、數據品質、不確定性等工作表</span></p></li><li><p><strong><span>彙總版清冊</span></strong><span>：跨據點彙整 CO2 排放量與活動數據，以一份 Excel 呈現所有據點的比較概覽</span></p></li></ul><figure class='table-figure'><table><thead><tr><th><span>角色</span></th><th><span>操作權限</span></th></tr></thead><tbody><tr><td><span>Admin</span></td><td><span>完整匯出（不限公司）</span></td></tr><tr><td><span>據點管理員(SO)</span></td><td><span>可匯出自身被指派據點的報告書</span></td></tr></tbody></table></figure><hr /><h2 id='2-架構設計'><span>2. 架構設計</span></h2><h3 id='核心類別'><span>核心類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>類別</span></th><th><span>職責</span></th></tr></thead><tbody><tr><td><code>EmissionInventoryController</code></td><td><span>清冊匯出 API 入口，含權限驗證</span></td></tr><tr><td><code>EmissionInventoryService</code></td><td><span>單據點清冊產製主流程，整合各資料來源</span></td></tr><tr><td><code>TotalInventoryService</code></td><td><span>彙總版清冊產製主流程</span></td></tr><tr><td><code>ExportInventoryExcelUtils</code></td><td><span>單據點 Excel 組裝（Workbook → byte[]、Zip 打包）</span></td></tr><tr><td><code>ExportTotalInventoryExcelUtiles</code></td><td><span>彙總版 Excel 組裝</span></td></tr><tr><td><code>DataInventoryDetailHelpers</code></td><td><span>排放源資料整理，組裝 </span><code>GhgInventoryDetailBO</code></td></tr><tr><td><code>DataInventoryResultHelpers</code></td><td><span>盤查結果 BO 組裝（Scope 加總、Location/Market Based）</span></td></tr><tr><td><code>DataCategory1DetailHelpers</code></td><td><span>類別 1 排放明細組裝</span></td></tr><tr><td><code>DataCategory2To6DetailHelpers</code></td><td><span>類別 2～6 排放明細組裝</span></td></tr><tr><td><code>DataTransformScopeWithEmissionSource</code></td><td><span>排放源依 Scope 樹狀結構轉換</span></td></tr><tr><td><code>DataEmissionInventoryUtils</code></td><td><span>基本資訊、冷媒逸散率、重大性原則 BO 產生</span></td></tr><tr><td><code>DataTotalInventoryUtils</code></td><td><span>彙總版基本資訊 BO 產生</span></td></tr><tr><td><code>DataSummaryUtils</code></td><td><span>彙總版據點 CO2 資料組裝</span></td></tr></tbody></table></figure><h3 id='各-sheet-helper-類別'><span>各 Sheet Helper 類別</span></h3><figure class='table-figure'><table><thead><tr><th><span>Helper 類別</span></th><th><span>對應工作表</span></th></tr></thead><tbody><tr><td><code>EmissionInventoryExcelBasicInformationHelpers</code></td><td><span>基本資訊</span></td></tr><tr><td><code>EmissionInventoryExcelInventoryResultHelpers</code></td><td><span>盤查結果</span></td></tr><tr><td><code>EmissionInventoryExcelScope1Helpers</code></td><td><span>類別 1 排放</span></td></tr><tr><td><code>EmissionInventoryExcelScope2to6Helpers</code></td><td><span>類別 2-6 排放（ISO）/ 類別 2 排放（GHG）</span></td></tr><tr><td><code>EmissionInventoryExcelScope3Helpers</code></td><td><span>類別 3 排放（GHG Protocol 專屬）</span></td></tr><tr><td><code>EmissionInventoryExcelSignificantResultHelpers</code></td><td><span>重大性評估結果</span></td></tr><tr><td><code>EmissionInventoryExcelSignificanceDeterminationPrinciplesSheetHelpers</code></td><td><span>重大性評估表（準則）</span></td></tr><tr><td><code>EmissionInventoryExcelDataLevelScoreHelpers</code></td><td><span>數據品質等級評分結果</span></td></tr><tr><td><code>EmissionInventoryExcelUncertaintyAssessmentHelpers</code></td><td><span>不確定性量化評估結果</span></td></tr><tr><td><code>EmissionInventoryExcelMontrealControlHelpers</code></td><td><span>蒙特婁議定書管制物質</span></td></tr><tr><td><code>EmissionInventoryExcelRefrigerantRateHelpers</code></td><td><span>冷媒逸散列表</span></td></tr><tr><td><code>EmissionInventoryExcelVersionManagementHelpers</code></td><td><span>版次管理表</span></td></tr></tbody></table></figure><h3 id='資料物件bo'><span>資料物件（BO）</span></h3><figure class='table-figure'><table><thead><tr><th><span>BO</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><code>GhgInventoryDetailBO</code></td><td><span>清冊 Excel 各 Sheet 所需資料的完整容器</span></td></tr><tr><td><code>BasicInfoBO</code></td><td><span>基本資訊（公司名稱、據點名稱、報告期間、GWP版本、聯絡人等）</span></td></tr><tr><td><code>InventoryResultBo</code></td><td><span>盤查結果（各 Scope CO2 加總、Location/Market Based）</span></td></tr><tr><td><code>RefrigerantFugitiveRateBO</code></td><td><span>冷媒逸散率列表</span></td></tr><tr><td><code>SignificanceDeterminationPrinciplesBO</code></td><td><span>重大性評估準則</span></td></tr><tr><td><code>Co2EmissionLevelBo</code></td><td><span>CO2 排放當量（含蒙特婁協定版本）</span></td></tr><tr><td><code>SummarySiteDto</code></td><td><span>彙總版單據點匯整資料</span></td></tr><tr><td><code>SummaryContactInfo</code></td><td><span>彙總版聯絡人資訊</span></td></tr><tr><td><code>InventoryScopeDto</code></td><td><span>彙總版範疇名稱清單</span></td></tr></tbody></table></figure><hr /><h2 id='3-常用-api'><span>3. 常用 API</span></h2><figure class='table-figure'><table><thead><tr><th><span>方法</span></th><th><span>端點</span></th><th><span>說明</span></th><th><span>權限</span></th></tr></thead><tbody><tr><td><span>GET</span></td><td><code>/api/v2/emission-inventory/export</code></td><td><span>匯出清冊 Zip（含所有據點單據點 + 彙總版）</span></td><td><span>REPORT - CREATE</span></td></tr></tbody></table></figure><h3 id='請求參數'><span>請求參數</span></h3><figure class='table-figure'><table><thead><tr><th><span>參數</span></th><th><span>類型</span></th><th><span>說明</span></th><th><span>必填</span></th></tr></thead><tbody><tr><td><code>siteIds</code></td><td><code>List&lt;String&gt;</code></td><td><span>匯出的據點 ID 列表</span></td><td><span>✓</span></td></tr><tr><td><code>companyId</code></td><td><code>String</code></td><td><span>公司 ID</span></td><td><span>✓</span></td></tr><tr><td><code>arVersion</code></td><td><code>String</code></td><td><span>IPCC 評估報告版本（GWP 版本，如 </span><code>6</code><span>）</span></td><td><span>✓</span></td></tr><tr><td><code>startDate</code></td><td><code>ZonedDateTime</code></td><td><span>盤查起始日期（ISO 8601）</span></td><td><span>✓</span></td></tr><tr><td><code>endDate</code></td><td><code>ZonedDateTime</code></td><td><span>盤查結束日期（ISO 8601）</span></td><td><span>✓</span></td></tr><tr><td><code>locale</code></td><td><code>String</code></td><td><span>語系（如 </span><code>zh-TW</code><span>、</span><code>en-US</code><span>、</span><code>ja-JP</code><span>）</span></td><td><span>✓</span></td></tr><tr><td><code>protocolType</code></td><td><code>ProtocolType</code></td><td><span>協定類型（</span><code>ISO</code><span> / </span><code>GHG</code><span>）</span></td><td><span>✓</span></td></tr></tbody></table></figure><hr /><h2 id='4-業務邏輯'><span>4. 業務邏輯</span></h2><h3 id='41-單據點清冊產製流程'><span>4.1 單據點清冊產製流程</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">EmissionInventoryService.export(siteIds, companyId, arVersion, startDate, endDate, locale, protocolType)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ 共用資料準備</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 設定語系 (LocaleContextHolder)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得 GWP 值清單 (IpccArService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得據點資訊 Map (ISiteClient)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得公司名稱 (ICompanyClient)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得範疇樹 (ScopeService) → 依 protocolType 過濾</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得父範疇對應 Map (ScopeService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得單位換算率 Map (UnitExchangeService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得 IPCC 版本資訊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得冷媒逸散率列表 (RefrigerantEquipTypeService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得重大性評估準則 (ImportanceService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └─ 取得重大性評估資料 (ImportanceService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ By 所有據點取得排放源列表 (EmissionSourceService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; → groupingBy siteId</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └─ 迴圈各 siteId 產製單據點 Excel</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 取得排放源資料，依範疇樹重新整理為 ExcelScopeEmissionDto</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 計算 CO2 排放當量 (GhgEmissionsCalculator.getCo2EmissionLevel)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  │ &nbsp; ├─ 一般計算（預設排除蒙特婁）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  │ &nbsp; └─ 包含蒙特婁計算（isIncludeMontrealProtocol = true）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 組裝盤查結果 BO (DataInventoryResultHelpers)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 取得數據品質分數 Map (EmissionSourceQualityService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 取得不確定性分析資料 (UncertaintyService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 組裝 GhgInventoryDetailBO (DataInventoryDetailHelpers)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 設定數據品質等級評分 (QualityService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  ├─ 產生基本資訊 BO (DataEmissionInventoryUtils)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  └─ 呼叫 ExportInventoryExcelUtils.export() 產生 Excel byte[]</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 691px;"></div><div class="CodeMirror-gutters" style="display: none; height: 691px;"></div></div></div></pre><h3 id='42-彙總版清冊產製流程'><span>4.2 彙總版清冊產製流程</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">TotalInventoryService.export(siteIds, locale, arVersion, startDate, endDate, protocolType, companyName)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ 設定語系</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ prepareExportData()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得據點資訊 Map (SiteService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得據點公司對應 Map (ICompanyClient)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得 GWP 值清單與 Map (IpccArService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 取得單位換算率 Map (UnitExchangeService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 產生基本資訊列表 (DataTotalInventoryUtils)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; │ &nbsp; → 強制覆蓋公司名稱為前端傳入的 companyName（統一處理）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ 產生聯絡人資訊 (DataTotalInventoryUtils)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └─ 取得各據點排放源資料 Map (EmissionSourceService)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ generateSummarySiteDTOs()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ getSummarySiteDTOsCO2Emission()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; │ &nbsp; → 各據點分別計算 CO2 排放當量 (GhgEmissionsCalculator)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; ├─ getSummarySiteDTOsActData()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; │ &nbsp; → 組裝各據點活動數據 SummarySiteDto</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; └─ DataSummaryUtils.genSummarySiteDTOs()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; &nbsp; &nbsp; → 合併 CO2 資料與據點資訊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ getInventoryScopeDTOs()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; → 取得該 protocolType 的子範疇清單，依 sort 排序</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├─ getScopeNodeDto()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │ &nbsp; → 取得範疇樹節點</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  │</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └─ ExportTotalInventoryExcelUtiles.export()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  → 產生彙總版 Excel byte[]</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 668px;"></div><div class="CodeMirror-gutters" style="display: none; height: 668px;"></div></div></div></pre><hr /><h2 id='5-單據點清冊-excel-工作表結構'><span>5. 單據點清冊 Excel 工作表結構</span></h2><h3 id='iso-protocol-版本11-個工作表'><span>ISO Protocol 版本（11 個工作表）</span></h3><figure class='table-figure'><table><thead><tr><th><span>順序</span></th><th><span>工作表名稱</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>0</span></td><td><span>版次管理表</span></td><td><span>清冊版本歷史記錄</span></td></tr><tr><td><span>1</span></td><td><span>基本資訊</span></td><td><span>公司/據點名稱、報告期間、GWP 版本、聯絡人</span></td></tr><tr><td><span>2</span></td><td><span>盤查結果</span></td><td><span>各 Scope CO2 排放量加總（Location / Market Based）</span></td></tr><tr><td><span>3</span></td><td><span>類別 1 排放</span></td><td><span>Scope 1（1.1～1.5）排放明細</span></td></tr><tr><td><span>4</span></td><td><span>間接溫室氣體排放源鑑別與重大性評估</span></td><td><span>重大性評估結果</span></td></tr><tr><td><span>5</span></td><td><span>類別 2-6 排放</span></td><td><span>Scope 2～6 排放明細</span></td></tr><tr><td><span>6</span></td><td><span>重大性評估表（準則）</span></td><td><span>重大性評估準則設定</span></td></tr><tr><td><span>7</span></td><td><span>數據品質等級評分結果</span></td><td><span>各排放源數據品質分數</span></td></tr><tr><td><span>8</span></td><td><span>不確定性量化評估結果</span></td><td><span>不確定性分析資料</span></td></tr><tr><td><span>9</span></td><td><span>蒙特婁議定書管制物質</span></td><td><span>管制氣體排放量（含蒙特婁版本計算）</span></td></tr><tr><td><span>10</span></td><td><span>冷媒逸散列表</span></td><td><span>冷媒種類與逸散率</span></td></tr></tbody></table></figure><h3 id='ghg-protocol-版本12-個工作表'><span>GHG Protocol 版本（12 個工作表）</span></h3><blockquote><p><span>與 ISO 版本相比，多出「類別 3 排放」工作表，且類別 2 工作表僅含 Scope 2 資料</span></p></blockquote><figure class='table-figure'><table><thead><tr><th><span>順序</span></th><th><span>工作表名稱</span></th><th><span>說明</span></th></tr></thead><tbody><tr><td><span>0</span></td><td><span>版次管理表</span></td><td><span>-</span></td></tr><tr><td><span>1</span></td><td><span>基本資訊</span></td><td><span>-</span></td></tr><tr><td><span>2</span></td><td><span>盤查結果</span></td><td><span>-</span></td></tr><tr><td><span>3</span></td><td><span>類別 1 排放</span></td><td><span>-</span></td></tr><tr><td><span>4</span></td><td><span>間接溫室氣體排放源鑑別與重大性評估</span></td><td><span>-</span></td></tr><tr><td><span>5</span></td><td><span>類別 2 排放</span></td><td><span>Scope 2 排放明細</span></td></tr><tr><td><span>6</span></td><td><span>類別 3 排放</span></td><td><span>Scope 3（C4～C15）排放明細</span></td></tr><tr><td><span>7</span></td><td><span>重大性評估表（準則）</span></td><td><span>-</span></td></tr><tr><td><span>8</span></td><td><span>數據品質等級評分結果</span></td><td><span>-</span></td></tr><tr><td><span>9</span></td><td><span>不確定性量化評估結果</span></td><td><span>-</span></td></tr><tr><td><span>10</span></td><td><span>蒙特婁議定書管制物質</span></td><td><span>-</span></td></tr><tr><td><span>11</span></td><td><span>冷媒逸散列表</span></td><td><span>-</span></td></tr></tbody></table></figure><hr /><h2 id='6-協定類型差異iso-vs-ghg-protocol'><span>6. 協定類型差異（ISO vs GHG Protocol）</span></h2><figure class='table-figure'><table><thead><tr><th><span>項目</span></th><th><span>ISO Protocol</span></th><th><span>GHG Protocol</span></th></tr></thead><tbody><tr><td><span>範疇分類</span></td><td><span>ISO 1.1 ～ 6.1</span></td><td><span>C1 ～ C15（GHG Category）</span></td></tr><tr><td><span>Sheet 結構</span></td><td><span>類別 1 + 類別 2-6 共 2 張排放明細</span></td><td><span>類別 1 + 類別 2 + 類別 3 共 3 張排放明細</span></td></tr><tr><td><span>重大性評估篩選</span></td><td><span>有（ISO 才進行排放源重大性篩選）</span></td><td><span>無</span></td></tr><tr><td><span>盤查結果呈現</span></td><td><span>ISO Scope 架構</span></td><td><span>GHG Protocol Scope 架構</span></td></tr><tr><td><span>資料 i18n key 前綴</span></td><td><code>excel.ghg.inventory.*</code></td><td><code>excel.inventory.ghg_protocol.*</code></td></tr></tbody></table></figure><hr /><h2 id='7-i18n-多語系支援'><span>7. i18n 多語系支援</span></h2><p><span>清冊 Excel 的所有文字透過 </span><code>MessageSourceUtils.getMessage()</code><span> 動態取得，支援以下語系：</span></p><figure class='table-figure'><table><thead><tr><th><span>語系代碼</span></th><th><span>對應 properties 檔案</span></th></tr></thead><tbody><tr><td><code>zh-TW</code></td><td><code>messages_zh_TW.properties</code></td></tr><tr><td><code>zh-CN</code></td><td><code>messages_zh_CN.properties</code></td></tr><tr><td><code>en-US</code></td><td><code>messages_en_US.properties</code></td></tr><tr><td><code>ja-JP</code></td><td><code>messages_ja_JP.properties</code></td></tr></tbody></table></figure><p><strong><span>語系設定方式</span></strong><span>：</span><br/><span>在 Service 入口以 </span><code>LocaleContextHolder.setLocale(Locale.forLanguageTag(locale))</code><span> 設定，所有後續的 i18n 查詢都會根據此設定取值。</span></p><p><strong><span>常用 i18n Key 前綴</span></strong><span>：</span></p><figure class='table-figure'><table><thead><tr><th><span>前綴</span></th><th><span>對應內容</span></th></tr></thead><tbody><tr><td><code>excel.ghg.inventory.*</code></td><td><span>單據點清冊 Sheet 名稱（ISO）</span></td></tr><tr><td><code>excel.inventory.ghg_protocol.*</code></td><td><span>單據點清冊 Sheet 名稱（GHG Protocol）</span></td></tr><tr><td><code>excel.export.*</code></td><td><span>清冊 Excel 欄位標題</span></td></tr><tr><td><code>excel.total_inventory.*</code></td><td><span>彙總版 Excel 欄位標題</span></td></tr><tr><td><code>excel.inventory.basic_info.*</code></td><td><span>基本資訊工作表欄位</span></td></tr><tr><td><code>excel.inventory.data_quality.*</code></td><td><span>數據品質工作表欄位</span></td></tr></tbody></table></figure><hr /><h2 id='8-匯出結果-zip-結構'><span>8. 匯出結果 Zip 結構</span></h2><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 7.99997px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">📦 清冊匯出.zip</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── {年度} {據點1名稱}.xlsx &nbsp; &nbsp;  ← 單據點清冊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── {年度} {據點2名稱}.xlsx &nbsp; &nbsp;  ← 單據點清冊</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ├── ...</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  └── Total Inventory - {yyyy-MM-dd}.xlsx  ← 彙總版清冊</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 115px;"></div></div></div></pre><blockquote><p><span>檔名會透過 </span><code>sanitizeFileName()</code><span> 清理不合法的 Windows 特殊字元（</span><code>&lt; &gt; : &quot; / \ | ? *</code><span>）</span></p></blockquote><hr /><h2 id='9-常見問題與排查'><span>9. 常見問題與排查</span></h2><figure class='table-figure'><table><thead><tr><th><span>問題</span></th><th><span>排查方向</span></th></tr></thead><tbody><tr><td><span>匯出失敗（</span><code>FILE_PROCESSING_FAILED</code><span>）</span></td><td><span>查看 log </span><code>Export Inventory Excel Failed:</code><span>，確認資料組裝 BO 有無 null pointer</span></td></tr><tr><td><span>某 Scope 數值為 0</span></td><td><span>確認排放源是否有活動數據；確認係數是否指派；確認 </span><code>GhgEmissionsCalculator</code><span> log 是否有 error</span></td></tr><tr><td><span>蒙特婁管制物質 Sheet 數值異常</span></td><td><span>確認 </span><code>getCo2EmissionLevel</code><span> 傳入 </span><code>isIncludeMontrealProtocol = true</code><span> 的那次計算資料是否正確</span></td></tr><tr><td><span>盤查結果 Location Based / Market Based 異常</span></td><td><span>確認 2.1 電力排放源的 Location / Market 係數是否有設定；查看 </span><code>ISO21Helper</code></td></tr><tr><td><span>重大性評估資料顯示空白</span></td><td><span>確認該年度是否有建立重大性評估（</span><code>ImportanceService.getImportanceEditDto</code><span>）</span></td></tr><tr><td><span>基本資訊顯示錯誤聯絡人</span></td><td><span>清冊使用「據點管理員」資料，確認 </span><code>AssignTaskService.getUserListByResourceAndTargetId</code><span> 有回傳正確 SO 資料</span></td></tr><tr><td><span>彙總版公司名稱錯誤</span></td><td><span>彙總版目前強制使用前端傳入的 </span><code>companyName</code><span> 覆蓋，確認 API 呼叫端傳入值是否正確</span></td></tr><tr><td><span>Zip 內缺少某據點</span></td><td><span>確認該據點在起訖日期範圍內有排放源資料（</span><code>emissionSourceService</code><span> 查詢結果）</span></td></tr><tr><td><span>語系顯示異常</span></td><td><span>確認傳入 </span><code>locale</code><span> 格式正確（如 </span><code>zh-TW</code><span>）；確認 properties 檔案有對應的 message key</span></td></tr></tbody></table></figure><hr /><h2 id='10-擴充指引'><span>10. 擴充指引</span></h2><h3 id='新增清冊-excel-工作表'><span>新增清冊 Excel 工作表</span></h3><ol start='' ><li><p><span>建立對應的 </span><code>EmissionInventoryExcelXXXHelpers</code><span> 類別，實作 </span><code>setXXXSheet(Sheet sheet, ...)</code><span> 方法</span></p></li><li><p><span>在 </span><code>ExportInventoryExcelUtils.export()</code><span> 依序建立 Sheet、設定 Sheet 名稱、呼叫 Helper</span></p></li><li><p><span>在 </span><code>GhgInventoryDetailBO</code><span> 新增對應資料欄位</span></p></li><li><p><span>在 </span><code>DataInventoryDetailHelpers.genInventoryDataDetail()</code><span> 補上資料組裝邏輯</span></p></li><li><p><span>在 i18n properties 新增 Sheet 名稱對應的 message key</span></p></li></ol><h3 id='新增協定類型如新標準'><span>新增協定類型（如新標準）</span></h3><ol start='' ><li><p><span>在 </span><code>ProtocolType</code><span> enum 新增類型</span></p></li><li><p><span>在 </span><code>ExportInventoryExcelUtils.export()</code><span> 補上 protocolType 判斷分支</span></p></li><li><p><span>在 </span><code>ScopeService</code><span> 確認新協定類型的範疇樹資料存在</span></p></li><li><p><span>新增對應的 i18n key</span></p></li></ol><h3 id='調整彙總版欄位'><span>調整彙總版欄位</span></h3><ol start='' ><li><p><span>修改 </span><code>SummarySiteDto</code><span> 欄位定義</span></p></li><li><p><span>在 </span><code>TotalInventoryService.getSummarySiteDTOsActData()</code><span> 補上資料裝填邏輯</span></p></li><li><p><span>在 </span><code>ExportTotalInventoryExcelUtiles</code><span> 補上對應的 Excel 儲存格設定</span></p></li></ol><hr /><h2 id='11-交接建議維運重點'><span>11. 交接建議（維運重點）</span></h2><ul><li><p><span>單據點清冊與彙總版的匯出</span><strong><span>同屬一支 API</span></strong><span>（</span><code>/api/v2/emission-inventory/export</code><span>），最終打包成同一個 Zip 下載</span></p></li><li><p><span>清冊 Excel 的工作表順序有明確的依賴關係（例如 Scope 2-6 需先計算，因為 Scope 1 的某些欄位會參照 Scope 2 總和），調整時需特別留意</span></p></li><li><p><strong><span>協定類型（ISO / GHG）</span></strong><span> 會影響工作表數量與 Sheet Helper 的呼叫邏輯，兩個版本需分別維護</span></p></li><li><p><span>重大性評估篩選（</span><code>filterImportanceEmissionSourceWithActivityDatas</code><span>）</span><strong><span>只有 ISO</span></strong><span> 版本會執行，GHG Protocol 版本使用全數排放源計算</span></p></li><li><p><span>彙總版公司名稱目前是以前端傳入的 </span><code>companyName</code><span> 統一覆蓋，若未來要改為各據點關聯的公司名稱，需移除 </span><code>TotalInventoryService</code><span> 中的覆蓋邏輯</span></p></li><li><p><span>匯出相關 log 較少，若遇到問題難以定位，建議在各 </span><code>setXXXSheet()</code><span> 入口補上 log 後再排查</span></p></li></ul><p>&nbsp;</p></div></div>
+</body>
+</html>
