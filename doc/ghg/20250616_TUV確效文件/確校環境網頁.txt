@@ -1,0 +1,52 @@
+確效的環境：https://ghg-staging.delzer0.com/zh-tw/home
+帳號：tuv.validation.admin
+密碼：P@ssw0rd
+
+******* 6/16~6/19 TUV確效資訊 *******
+
+環境: https://ghg-staging.delzer0.com/zh-tw/home
+ 
+******* HQ *******
+
+帳號：tuv.validation.aup1 (TUV用 - Milo)
+
+密碼：P@ssw0rd
+ 
+帳號：tuv.validation.aup2 (DSP 平台用)
+
+密碼：P@ssw0rd
+
+******* HQ *******
+ 
+******* 桃三廠 *******
+
+帳號：tuv.validation.aup3 (TUV用 - Una)
+
+密碼：P@ssw0rd
+ 
+帳號：tuv.validation.aup4 (平台操作 - Peggy)
+
+密碼：P@ssw0rd
+
+******* 桃三廠 *******
+ 
+******* 桃五廠 *******
+
+帳號：tuv.validation.aup5 (TUV用 - Alex)
+
+密碼：P@ssw0rd
+ 
+帳號：tuv.validation.aup6 (平台操作 - Hans)
+
+密碼：P@ssw0rd
+
+******* 桃五廠 *******
+ 
+帳號：tuv.validation.admin (其他DSP人員)
+
+密碼：P@ssw0rd
+ 
+HANS.YANG 楊哲豪PEGGY.WU 吳佩宜
+避免當天過多人使用同帳號操作， 確效帳號已申請多組，再請大家當天使用 自己廠區的帳號
+GHG
+ 
